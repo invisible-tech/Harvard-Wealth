@@ -49,15 +49,13 @@ export default function Sidebar() {
               const Icon = item.icon;
               return (
                 <li key={item.path}>
-                  <Link href={item.path}>
-                    <a className={`flex items-center px-3 py-2.5 rounded-lg nav-item-hover ${
-                      isActive(item.path) 
-                        ? 'active-nav' 
-                        : 'text-gray-300'
-                    }`}>
-                      <Icon className="w-5 h-5 mr-3" />
-                      <span className="font-medium">{item.label}</span>
-                    </a>
+                  <Link href={item.path} className={`flex items-center px-3 py-2.5 rounded-lg nav-item-hover ${
+                    isActive(item.path) 
+                      ? 'active-nav' 
+                      : 'text-gray-300'
+                  }`}>
+                    <Icon className="w-5 h-5 mr-3" />
+                    <span className="font-medium">{item.label}</span>
                   </Link>
                 </li>
               );

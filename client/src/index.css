@@ -105,8 +105,8 @@
   }
   
   .active-nav {
-    background-color: hsl(var(--primary));
-    color: hsl(var(--primary-foreground));
+    background-color: hsl(240 4% 25%);
+    color: hsl(var(--sidebar-foreground));
   }
   
   .mobile-menu-enter {
