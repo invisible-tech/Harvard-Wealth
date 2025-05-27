@@ -105,8 +105,7 @@
   }
   
   .active-nav {
-    background-color: hsl(240 4% 25%);
-    color: hsl(var(--sidebar-foreground));
+    @apply bg-zinc-800 text-white;
   }
   
   .mobile-menu-enter {
