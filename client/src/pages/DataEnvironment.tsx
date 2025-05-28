@@ -1,21 +1,159 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { Server } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { 
+  Database, 
+  Activity, 
+  GitBranch, 
+  Table, 
+  FileText, 
+  Zap, 
+  Globe 
+} from "lucide-react";
 
 export default function DataEnvironment() {
+  const statsCards = [
+    {
+      title: "Total Data Sources",
+      value: "47",
+      change: "+5",
+      changeText: "this month",
+      icon: Database,
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600"
+    },
+    {
+      title: "Data Processed", 
+      value: "2.4TB",
+      change: "+12%",
+      changeText: "from last week",
+      icon: Activity,
+      iconBg: "bg-green-100",
+      iconColor: "text-green-600"
+    },
+    {
+      title: "Active Pipelines",
+      value: "23", 
+      change: "+3",
+      changeText: "since yesterday",
+      icon: GitBranch,
+      iconBg: "bg-purple-100",
+      iconColor: "text-purple-600"
+    }
+  ];
+
+  const dataTypes = [
+    {
+      title: "Structured Data",
+      description: "Relational databases and tables",
+      sources: "12 sources",
+      status: "Healthy",
+      statusColor: "bg-green-100 text-green-800",
+      icon: Table,
+      iconBg: "bg-blue-50",
+      iconColor: "text-blue-600"
+    },
+    {
+      title: "Unstructured Data",
+      description: "Documents, logs, and media files",
+      sources: "8 sources",
+      status: "Warning",
+      statusColor: "bg-yellow-100 text-yellow-800",
+      icon: FileText,
+      iconBg: "bg-orange-50",
+      iconColor: "text-orange-600"
+    },
+    {
+      title: "Real-time Streams",
+      description: "Live data feeds and events",
+      sources: "15 sources",
+      status: "Active",
+      statusColor: "bg-blue-100 text-blue-800",
+      icon: Zap,
+      iconBg: "bg-green-50",
+      iconColor: "text-green-600"
+    },
+    {
+      title: "API & Services",
+      description: "External APIs and web services",
+      sources: "12 sources",
+      status: "Stable",
+      statusColor: "bg-green-100 text-green-800",
+      icon: Globe,
+      iconBg: "bg-purple-50",
+      iconColor: "text-purple-600"
+    }
+  ];
+
   return (
     <div className="content-fade-in">
       <div className="max-w-7xl mx-auto">
-        <Card className="bg-white border-border p-8 text-center">
-          <CardContent className="p-0">
-            <Server className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-foreground mb-2">
-              Data Environment
-            </h3>
-            <p className="text-muted-foreground">
-              Manage your data sources, connections, and environment configurations.
-            </p>
-          </CardContent>
-        </Card>
+        {/* Stats Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          {statsCards.map((card, index) => {
+            const Icon = card.icon;
+            return (
+              <Card key={index} className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-muted-foreground">
+                        {card.title}
+                      </p>
+                      <p className="text-2xl font-bold text-foreground">
+                        {card.value}
+                      </p>
+                    </div>
+                    <div className={`w-12 h-12 ${card.iconBg} rounded-lg flex items-center justify-center`}>
+                      <Icon className={`${card.iconColor} h-6 w-6`} />
+                    </div>
+                  </div>
+                  <div className="mt-4 flex items-center text-sm">
+                    <span className="text-green-600 font-medium">
+                      {card.change}
+                    </span>
+                    <span className="text-muted-foreground ml-1">
+                      {card.changeText}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+        
+        {/* Data Types Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {dataTypes.map((dataType, index) => {
+            const Icon = dataType.icon;
+            return (
+              <Card key={index} className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className={`w-10 h-10 ${dataType.iconBg} rounded-lg flex items-center justify-center`}>
+                        <Icon className={`${dataType.iconColor} h-5 w-5`} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground">
+                          {dataType.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {dataType.description}
+                        </p>
+                      </div>
+                    </div>
+                    <Badge className={dataType.statusColor}>
+                      {dataType.status}
+                    </Badge>
+                  </div>
+                  <div className="text-sm text-muted-foreground">
+                    {dataType.sources}
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
