@@ -46,8 +46,8 @@ export default function DataEnvironment() {
       title: "Structured Data",
       description: "Relational databases and tables",
       sources: "12 sources",
-      status: "Healthy",
-      statusColor: "bg-gray-100 text-gray-800",
+      status: "Connected",
+      isConnected: true,
       icon: Table,
       iconBg: "bg-gray-100",
       iconColor: "text-gray-600"
@@ -56,8 +56,8 @@ export default function DataEnvironment() {
       title: "Unstructured Data",
       description: "Documents, logs, and media files",
       sources: "8 sources",
-      status: "Warning",
-      statusColor: "bg-gray-100 text-gray-800",
+      status: "Disconnected",
+      isConnected: false,
       icon: FileText,
       iconBg: "bg-gray-100",
       iconColor: "text-gray-600"
@@ -66,8 +66,8 @@ export default function DataEnvironment() {
       title: "Real-time Streams",
       description: "Live data feeds and events",
       sources: "15 sources",
-      status: "Active",
-      statusColor: "bg-gray-100 text-gray-800",
+      status: "Connected",
+      isConnected: true,
       icon: Zap,
       iconBg: "bg-gray-100",
       iconColor: "text-gray-600"
@@ -76,8 +76,8 @@ export default function DataEnvironment() {
       title: "API & Services",
       description: "External APIs and web services",
       sources: "12 sources",
-      status: "Stable",
-      statusColor: "bg-gray-100 text-gray-800",
+      status: "Connected",
+      isConnected: true,
       icon: Globe,
       iconBg: "bg-gray-100",
       iconColor: "text-gray-600"
@@ -142,9 +142,14 @@ export default function DataEnvironment() {
                         </p>
                       </div>
                     </div>
-                    <Badge className={dataType.statusColor}>
-                      {dataType.status}
-                    </Badge>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-3 h-3 rounded-full ${
+                        dataType.isConnected ? 'bg-green-500' : 'bg-red-500'
+                      }`} />
+                      <span className="text-sm font-medium text-foreground">
+                        {dataType.status}
+                      </span>
+                    </div>
                   </div>
                   <div className="text-sm text-muted-foreground">
                     {dataType.sources}
