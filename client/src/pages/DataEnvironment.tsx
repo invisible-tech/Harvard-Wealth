@@ -18,8 +18,8 @@ export default function DataEnvironment() {
       change: "+5",
       changeText: "this month",
       icon: Database,
-      iconBg: "bg-blue-100",
-      iconColor: "text-blue-600"
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600"
     },
     {
       title: "Data Processed", 
@@ -27,8 +27,8 @@ export default function DataEnvironment() {
       change: "+12%",
       changeText: "from last week",
       icon: Activity,
-      iconBg: "bg-green-100",
-      iconColor: "text-green-600"
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600"
     },
     {
       title: "Active Pipelines",
@@ -36,8 +36,8 @@ export default function DataEnvironment() {
       change: "+3",
       changeText: "since yesterday",
       icon: GitBranch,
-      iconBg: "bg-purple-100",
-      iconColor: "text-purple-600"
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600"
     }
   ];
 
@@ -47,40 +47,40 @@ export default function DataEnvironment() {
       description: "Relational databases and tables",
       sources: "12 sources",
       status: "Healthy",
-      statusColor: "bg-green-100 text-green-800",
+      statusColor: "bg-gray-100 text-gray-800",
       icon: Table,
-      iconBg: "bg-blue-50",
-      iconColor: "text-blue-600"
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600"
     },
     {
       title: "Unstructured Data",
       description: "Documents, logs, and media files",
       sources: "8 sources",
       status: "Warning",
-      statusColor: "bg-yellow-100 text-yellow-800",
+      statusColor: "bg-gray-100 text-gray-800",
       icon: FileText,
-      iconBg: "bg-orange-50",
-      iconColor: "text-orange-600"
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600"
     },
     {
       title: "Real-time Streams",
       description: "Live data feeds and events",
       sources: "15 sources",
       status: "Active",
-      statusColor: "bg-blue-100 text-blue-800",
+      statusColor: "bg-gray-100 text-gray-800",
       icon: Zap,
-      iconBg: "bg-green-50",
-      iconColor: "text-green-600"
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600"
     },
     {
       title: "API & Services",
       description: "External APIs and web services",
       sources: "12 sources",
       status: "Stable",
-      statusColor: "bg-green-100 text-green-800",
+      statusColor: "bg-gray-100 text-gray-800",
       icon: Globe,
-      iconBg: "bg-purple-50",
-      iconColor: "text-purple-600"
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600"
     }
   ];
 
