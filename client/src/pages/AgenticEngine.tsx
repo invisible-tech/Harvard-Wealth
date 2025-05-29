@@ -243,6 +243,119 @@ export default function AgenticEngine() {
     }
   ];
 
+  const runs = [
+    {
+      runId: "RUN-8742",
+      workflow: "Document Processing Pipeline",
+      team: "Customer Support Team",
+      status: "Completed",
+      statusColor: "bg-green-100 text-green-800",
+      duration: "3m 27s",
+      processed: 47,
+      errors: 0,
+      timestamp: "2 hours ago"
+    },
+    {
+      runId: "RUN-8741",
+      workflow: "Email Classification and Routing",
+      team: "Customer Support Team",
+      status: "Completed",
+      statusColor: "bg-green-100 text-green-800",
+      duration: "43s",
+      processed: 32,
+      errors: 0,
+      timestamp: "2 hours ago"
+    },
+    {
+      runId: "RUN-8740",
+      workflow: "Customer Inquiry Resolution",
+      team: "Customer Support Team",
+      status: "Completed",
+      statusColor: "bg-green-100 text-green-800",
+      duration: "2m 15s",
+      processed: 12,
+      errors: 0,
+      timestamp: "3 hours ago"
+    },
+    {
+      runId: "RUN-8739",
+      workflow: "Social Media Sentiment Analysis",
+      team: "Content Generation Team",
+      status: "Completed",
+      statusColor: "bg-green-100 text-green-800",
+      duration: "1m 49s",
+      processed: 128,
+      errors: 0,
+      timestamp: "3 hours ago"
+    },
+    {
+      runId: "RUN-8738",
+      workflow: "Data Backup and Verification",
+      team: "Financial Analysis Team",
+      status: "Completed",
+      statusColor: "bg-green-100 text-green-800",
+      duration: "8m 23s",
+      processed: 516,
+      errors: 0,
+      timestamp: "5 hours ago"
+    },
+    {
+      runId: "RUN-8737",
+      workflow: "Financial Report Generation",
+      team: "Financial Analysis Team",
+      status: "Failed",
+      statusColor: "bg-red-100 text-red-800",
+      duration: "5m 13s",
+      processed: 28,
+      errors: 2,
+      timestamp: "5 hours ago"
+    },
+    {
+      runId: "RUN-8736",
+      workflow: "Contract Review and Analysis",
+      team: "Legal Document Analysis",
+      status: "Completed",
+      statusColor: "bg-green-100 text-green-800",
+      duration: "6m 35s",
+      processed: 14,
+      errors: 0,
+      timestamp: "6 hours ago"
+    },
+    {
+      runId: "RUN-8735",
+      workflow: "Document Processing Pipeline",
+      team: "Customer Support Team",
+      status: "Completed",
+      statusColor: "bg-green-100 text-green-800",
+      duration: "3m 27s",
+      processed: 51,
+      errors: 0,
+      timestamp: "7 hours ago"
+    },
+    {
+      runId: "RUN-8734",
+      workflow: "Customer Inquiry Resolution",
+      team: "Customer Support Team",
+      status: "Completed with Warnings",
+      statusColor: "bg-yellow-100 text-yellow-800",
+      duration: "2m 15s",
+      processed: 15,
+      errors: 1,
+      timestamp: "8 hours ago"
+    },
+    {
+      runId: "RUN-8733",
+      workflow: "Email Classification and Routing",
+      team: "Customer Support Team",
+      status: "Completed",
+      statusColor: "bg-green-100 text-green-800",
+      duration: "43s",
+      processed: 28,
+      errors: 0,
+      timestamp: "9 hours ago"
+    }
+  ];
+
   const renderContent = () => {
     if (activeTab === "Teams") {
       return (
@@ -476,6 +589,134 @@ export default function AgenticEngine() {
                             </Button>
                             <Button variant="ghost" size="sm">
                               <Play className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
+
+    if (activeTab === "Runs") {
+      return (
+        <div>
+          {/* Runs Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-xl font-semibold text-foreground mb-2">Recent Workflow Runs</h2>
+              <p className="text-sm text-muted-foreground">Historical record of team runs across various workflows</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Button variant="outline" className="bg-white border-gray-200">
+                <Play className="w-4 h-4 mr-2" />
+                Execute Run
+              </Button>
+              <Button variant="outline" className="bg-white border-gray-200">
+                <BarChart3 className="w-4 h-4 mr-2" />
+                View Analytics
+              </Button>
+            </div>
+          </div>
+
+          {/* Runs Table */}
+          <Card className="bg-white border-border">
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Run ID
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Workflow
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Team
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Duration
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Processed
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Errors
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Timestamp
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {runs.map((run, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm font-medium text-foreground">
+                            {run.runId}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center">
+                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                              <GitBranch className="h-5 w-5 text-green-600" />
+                            </div>
+                            <div className="text-sm font-medium text-foreground">
+                              {run.workflow}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="flex items-center">
+                            <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-2">
+                              <Users className="h-4 w-4 text-blue-600" />
+                            </div>
+                            <div className="text-sm text-foreground">
+                              {run.team}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <Badge className={run.statusColor}>
+                            {run.status}
+                          </Badge>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-foreground">
+                            {run.duration}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-foreground">
+                            {run.processed}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-foreground">
+                            {run.errors}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-muted-foreground">
+                            {run.timestamp}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center space-x-2">
+                            <Button variant="ghost" size="sm">
+                              <ExternalLink className="h-4 w-4" />
                             </Button>
                           </div>
                         </td>
