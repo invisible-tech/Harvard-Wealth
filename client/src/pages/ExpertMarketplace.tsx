@@ -23,7 +23,7 @@ import { useState } from "react";
 
 export default function ExpertMarketplace() {
   const [activeTab, setActiveTab] = useState("Dashboard");
-  const [taskTab, setTaskTab] = useState("Assigned Tasks");
+  const [taskTab, setTaskTab] = useState("Assigned");
 
   const tabs = [
     { name: "Dashboard", icon: LayoutDashboard },
@@ -108,9 +108,9 @@ export default function ExpertMarketplace() {
   ];
 
   const taskTabs = [
-    { name: "Assigned Tasks", count: 3 },
-    { name: "Completed Tasks", count: 2 },
-    { name: "Available Tasks", count: 4 }
+    { name: "Assigned", count: 3 },
+    { name: "Completed", count: 2 },
+    { name: "Available", count: 4 }
   ];
 
   const renderMyTasksContent = () => {
