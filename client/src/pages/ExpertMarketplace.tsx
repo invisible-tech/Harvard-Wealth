@@ -667,7 +667,7 @@ export default function ExpertMarketplace() {
 
                   {/* Payment Tabs */}
                   <div className="mb-6">
-                    <div className="bg-gray-50 rounded-lg border border-gray-200 p-1 max-w-md">
+                    <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
                       <nav className="flex w-full">
                         {["Pending", "Paid", "All Payments"].map((tab, index) => (
                           <button
