@@ -170,21 +170,20 @@ export default function AgenticEngine() {
         {/* Navigation Tabs */}
         <div className="mb-8">
           <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
-            <nav className="flex justify-center">
+            <nav className="flex w-full">
               {tabs.map((tab, index) => {
                 const Icon = tab.icon;
                 return (
                   <button
                     key={tab.name}
                     onClick={() => setActiveTab(tab.name)}
-                    className={`flex items-center justify-center px-6 py-2.5 font-medium text-sm transition-all duration-200 ${
+                    className={`flex items-center justify-center flex-1 py-2.5 font-medium text-sm transition-all duration-200 ${
                       index === 0 ? 'rounded-l-md' : index === tabs.length - 1 ? 'rounded-r-md' : ''
                     } ${
                       activeTab === tab.name
                         ? "bg-white text-blue-600 shadow-sm border border-gray-200"
                         : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
                     }`}
-                    style={{ minWidth: '140px' }}
                   >
                     <Icon className="w-4 h-4 mr-2" />
                     {tab.name}
