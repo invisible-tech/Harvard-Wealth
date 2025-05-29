@@ -25,6 +25,7 @@ import { useState } from "react";
 export default function ExpertMarketplace() {
   const [activeTab, setActiveTab] = useState("Dashboard");
   const [taskTab, setTaskTab] = useState("Assigned");
+  const [metricsTab, setMetricsTab] = useState("Overview");
 
   const tabs = [
     { name: "Dashboard", icon: LayoutDashboard },
@@ -744,19 +745,20 @@ export default function ExpertMarketplace() {
                 <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
                   <nav className="flex w-full">
                     {[
-                      { name: "Overview", icon: BarChart3 },
-                      { name: "Performance", icon: BarChart3 },
-                      { name: "Task Metrics", icon: FileCheck },
-                      { name: "SLA Compliance", icon: CheckCircle }
+                      { name: "Overview", icon: BarChart3, title: "Overview Metrics", subtitle: "Summary of key marketplace metrics" },
+                      { name: "Performance", icon: BarChart3, title: "Performance Metrics", subtitle: "System and response time analytics" },
+                      { name: "Task Metrics", icon: FileCheck, title: "Task Metrics", subtitle: "Task completion and processing analytics" },
+                      { name: "SLA Compliance", icon: CheckCircle, title: "SLA Compliance", subtitle: "Service level agreement monitoring" }
                     ].map((tab, index) => {
                       const Icon = tab.icon;
                       return (
                         <button
                           key={tab.name}
+                          onClick={() => setMetricsTab(tab.name)}
                           className={`flex items-center justify-center flex-1 py-2.5 font-medium text-sm ${
                             index === 0 ? 'rounded-l-md' : index === 3 ? 'rounded-r-md' : ''
                           } ${
-                            index === 0
+                            metricsTab === tab.name
                               ? "bg-white text-blue-600 shadow-sm border border-gray-200"
                               : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
                           }`}
@@ -770,51 +772,65 @@ export default function ExpertMarketplace() {
                 </div>
               </div>
 
-              {/* Time Period Selector */}
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground">Overview Metrics</h3>
-                  <p className="text-sm text-muted-foreground">Summary of key marketplace metrics</p>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
-                    <nav className="flex">
-                      {["Day", "Week", "Month"].map((period, index) => (
-                        <button
-                          key={period}
-                          className={`px-3 py-1.5 font-medium text-sm ${
-                            index === 1
-                              ? "bg-white text-blue-600 shadow-sm border border-gray-200 rounded"
-                              : "text-gray-600 hover:text-gray-800"
-                          }`}
-                        >
-                          {period}
-                        </button>
-                      ))}
-                    </nav>
-                  </div>
-                  <Button variant="outline" size="sm">
-                    <Eye className="h-4 w-4 mr-2" />
-                    View Details
-                  </Button>
-                </div>
-              </div>
+              {/* Current Tab Content */}
+              {(() => {
+                const currentTab = [
+                  { name: "Overview", icon: BarChart3, title: "Overview Metrics", subtitle: "Summary of key marketplace metrics" },
+                  { name: "Performance", icon: BarChart3, title: "Performance Metrics", subtitle: "System and response time analytics" },
+                  { name: "Task Metrics", icon: FileCheck, title: "Task Metrics", subtitle: "Task completion and processing analytics" },
+                  { name: "SLA Compliance", icon: CheckCircle, title: "SLA Compliance", subtitle: "Service level agreement monitoring" }
+                ].find(tab => tab.name === metricsTab);
 
-              {/* Overview Chart */}
-              <Card className="bg-white border-border mb-8">
-                <CardContent className="p-6">
-                  <div className="h-64 flex items-center justify-center bg-gray-50 rounded border-2 border-dashed border-gray-200">
-                    <div className="text-center">
-                      <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-                      <div className="text-sm text-gray-500">Chart visualization would appear here</div>
-                      <div className="flex items-center justify-between mt-8">
-                        <div className="text-sm text-gray-600">Average: 324</div>
-                        <div className="text-sm text-green-600">+24% from previous period</div>
+                return (
+                  <>
+                    {/* Time Period Selector */}
+                    <div className="flex items-center justify-between mb-6">
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground">{currentTab?.title}</h3>
+                        <p className="text-sm text-muted-foreground">{currentTab?.subtitle}</p>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
+                          <nav className="flex">
+                            {["Day", "Week", "Month"].map((period, index) => (
+                              <button
+                                key={period}
+                                className={`px-3 py-1.5 font-medium text-sm ${
+                                  index === 1
+                                    ? "bg-white text-blue-600 shadow-sm border border-gray-200 rounded"
+                                    : "text-gray-600 hover:text-gray-800"
+                                }`}
+                              >
+                                {period}
+                              </button>
+                            ))}
+                          </nav>
+                        </div>
+                        <Button variant="outline" size="sm">
+                          <Eye className="h-4 w-4 mr-2" />
+                          View Details
+                        </Button>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+
+                    {/* Chart */}
+                    <Card className="bg-white border-border mb-8">
+                      <CardContent className="p-6">
+                        <div className="h-64 flex items-center justify-center bg-gray-50 rounded border-2 border-dashed border-gray-200">
+                          <div className="text-center">
+                            <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                            <div className="text-sm text-gray-500">Chart visualization would appear here</div>
+                            <div className="flex items-center justify-between mt-8">
+                              <div className="text-sm text-gray-600">Average: 324</div>
+                              <div className="text-sm text-green-600">+24% from previous period</div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </>
+                );
+              })()}
 
               {/* Prometheus Metrics */}
               <Card className="bg-white border-border mb-8">
