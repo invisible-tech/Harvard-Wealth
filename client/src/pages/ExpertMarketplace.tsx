@@ -23,7 +23,7 @@ export default function ExpertMarketplace() {
   const tabs = [
     { name: "Dashboard", icon: LayoutDashboard },
     { name: "My Tasks", icon: FileText },
-    { name: "Task Queue", icon: Users },
+    { name: "Task Queue", icon: Clock },
     { name: "Talent Pool", icon: Users },
     { name: "Payments", icon: CreditCard },
     { name: "Metrics", icon: BarChart3 }
@@ -72,12 +72,6 @@ export default function ExpertMarketplace() {
   return (
     <div className="content-fade-in">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-foreground mb-2">Expert Marketplace</h1>
-          <p className="text-muted-foreground">Connect with experts and manage specialized tasks in our marketplace</p>
-        </div>
-
         {/* Navigation Tabs */}
         <div className="mb-8">
           <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
