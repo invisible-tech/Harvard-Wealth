@@ -32,12 +32,6 @@ export default function ModelEvaluations() {
   return (
     <div>
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-foreground mb-2">Model Evaluations</h1>
-          <p className="text-muted-foreground">Evaluate and analyze model performance</p>
-        </div>
-
         {/* Navigation Tabs */}
         <div className="mb-8">
           <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
