@@ -149,6 +149,100 @@ export default function AgenticEngine() {
     }
   ];
 
+  const workflows = [
+    {
+      name: "Contract Review and Analysis",
+      description: "Review legal documents and highlight...",
+      type: "Legal",
+      typeColor: "bg-orange-100 text-orange-800",
+      status: "Active",
+      statusColor: "bg-green-100 text-green-800",
+      steps: 7,
+      avgTime: "6m 35s",
+      totalRuns: "286",
+      success: "90%",
+      lastRun: "4 hours ago"
+    },
+    {
+      name: "Customer Inquiry Resolution",
+      description: "Handle and resolve customer support...",
+      type: "Support",
+      typeColor: "bg-blue-100 text-blue-800",
+      status: "Active",
+      statusColor: "bg-green-100 text-green-800",
+      steps: 5,
+      avgTime: "2m 12s",
+      totalRuns: "1,423",
+      success: "88%",
+      lastRun: "26 minutes ago"
+    },
+    {
+      name: "Data Backup and Verification",
+      description: "Automated backup and integrity verificatio...",
+      type: "Infrastructure",
+      typeColor: "bg-gray-100 text-gray-800",
+      status: "Active",
+      statusColor: "bg-green-100 text-green-800",
+      steps: 5,
+      avgTime: "8m 12s",
+      totalRuns: "156",
+      success: "99%",
+      lastRun: "12 hours ago"
+    },
+    {
+      name: "Document Processing Pipeline",
+      description: "Extract, classify, and process document...",
+      type: "Data Processing",
+      typeColor: "bg-purple-100 text-purple-800",
+      status: "Active",
+      statusColor: "bg-green-100 text-green-800",
+      steps: 8,
+      avgTime: "3m 24s",
+      totalRuns: "847",
+      success: "96%",
+      lastRun: "1 hour ago"
+    },
+    {
+      name: "Email Classification and Routing",
+      description: "Sort, classify, and route emails to...",
+      type: "Communication",
+      typeColor: "bg-cyan-100 text-cyan-800",
+      status: "Active",
+      statusColor: "bg-green-100 text-green-800",
+      steps: 4,
+      avgTime: "42s",
+      totalRuns: "2,156",
+      success: "95%",
+      lastRun: "5 minutes ago"
+    },
+    {
+      name: "Financial Report Generation",
+      description: "Analyze financial data and generate...",
+      type: "Reporting",
+      typeColor: "bg-indigo-100 text-indigo-800",
+      status: "Inactive",
+      statusColor: "bg-red-100 text-red-800",
+      steps: 10,
+      avgTime: "4m 48s",
+      totalRuns: "312",
+      success: "92%",
+      lastRun: "3 days ago"
+    },
+    {
+      name: "Social Media Sentiment Analysis",
+      description: "Analyze social media content for brand...",
+      type: "Marketing",
+      typeColor: "bg-pink-100 text-pink-800",
+      status: "Active",
+      statusColor: "bg-green-100 text-green-800",
+      steps: 6,
+      avgTime: "1m 48s",
+      totalRuns: "573",
+      success: "89%",
+      lastRun: "37 minutes ago"
+    }
+  ];
+
   const renderContent = () => {
     if (activeTab === "Teams") {
       return (
@@ -242,6 +336,137 @@ export default function AgenticEngine() {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-muted-foreground">
                             {team.updated}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center space-x-2">
+                            <Button variant="ghost" size="sm">
+                              <ExternalLink className="h-4 w-4" />
+                            </Button>
+                            <Button variant="ghost" size="sm">
+                              <Play className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      );
+    }
+
+    if (activeTab === "Workflows") {
+      return (
+        <div>
+          {/* Workflows Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-xl font-semibold text-foreground mb-2">Client Workflows</h2>
+              <p className="text-sm text-muted-foreground">Automated processes and agent workflows customized for your organization</p>
+            </div>
+            <Button className="bg-blue-600 text-white hover:bg-blue-700">
+              <Plus className="w-4 h-4 mr-2" />
+              New Workflow
+            </Button>
+          </div>
+
+          {/* Workflows Table */}
+          <Card className="bg-white border-border">
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Workflow
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Type
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Status
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Steps
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Avg. Time
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Total Runs
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Success
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Last Run
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {workflows.map((workflow, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-4">
+                          <div className="flex items-center">
+                            <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                              <GitBranch className="h-5 w-5 text-green-600" />
+                            </div>
+                            <div>
+                              <div className="text-sm font-medium text-foreground">
+                                {workflow.name}
+                              </div>
+                              <div className="text-sm text-muted-foreground">
+                                {workflow.description}
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <Badge className={workflow.typeColor}>
+                            {workflow.type}
+                          </Badge>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <Badge className={workflow.statusColor}>
+                            {workflow.status}
+                          </Badge>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-foreground">
+                            {workflow.steps}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-foreground">
+                            {workflow.avgTime}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-foreground">
+                            {workflow.totalRuns}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
+                              <div 
+                                className={`h-2 rounded-full ${getSuccessRateColor(workflow.success)}`}
+                                style={{ width: workflow.success }}
+                              />
+                            </div>
+                            <span className="text-sm font-medium">{workflow.success}</span>
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-muted-foreground">
+                            {workflow.lastRun}
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
