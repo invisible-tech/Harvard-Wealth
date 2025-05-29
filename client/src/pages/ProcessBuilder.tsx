@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { 
   GitBranch, 
   Users, 
@@ -7,7 +8,9 @@ import {
   Play,
   Pause,
   CheckCircle,
-  AlertTriangle
+  AlertTriangle,
+  Edit,
+  Trash2
 } from "lucide-react";
 
 export default function ProcessBuilder() {
@@ -73,6 +76,34 @@ export default function ProcessBuilder() {
     }
   };
 
+  const yourProcesses = [
+    {
+      name: "Customer Onboarding",
+      description: "Complete customer registration and verification workflow",
+      steps: "5 steps",
+    },
+    {
+      name: "Invoice Processing",
+      description: "Automated invoice validation and approval process",
+      steps: "3 steps",
+    },
+    {
+      name: "Risk Assessment",
+      description: "Comprehensive risk evaluation for new applications",
+      steps: "7 steps",
+    },
+    {
+      name: "Data Backup",
+      description: "Daily backup routine for critical data systems",
+      steps: "4 steps",
+    },
+    {
+      name: "Quality Control",
+      description: "Product quality assurance and testing workflow",
+      steps: "6 steps",
+    }
+  ];
+
   return (
     <div className="content-fade-in">
       <div className="max-w-7xl mx-auto">
@@ -115,6 +146,78 @@ export default function ProcessBuilder() {
               </Card>
             );
           })}
+        </div>
+
+        {/* Your Processes Table */}
+        <div className="mt-8">
+          <Card className="bg-white border-border">
+            <div className="px-6 py-4 border-b border-border">
+              <h3 className="text-lg font-semibold text-foreground">Your Processes</h3>
+            </div>
+            <CardContent className="p-0">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Name
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Description
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Steps
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {yourProcesses.map((process, index) => (
+                      <tr key={index} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm font-medium text-foreground">
+                            {process.name}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4">
+                          <div className="text-sm text-muted-foreground max-w-xs">
+                            {process.description}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-muted-foreground">
+                            {process.steps}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center space-x-2">
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-blue-600 hover:text-blue-800"
+                            >
+                              <Edit className="h-4 w-4 mr-1" />
+                              Edit
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="text-red-600 hover:text-red-800"
+                            >
+                              <Trash2 className="h-4 w-4 mr-1" />
+                              Delete
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
