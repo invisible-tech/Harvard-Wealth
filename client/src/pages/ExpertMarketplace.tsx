@@ -82,7 +82,7 @@ export default function ExpertMarketplace() {
                   <button
                     key={tab.name}
                     onClick={() => setActiveTab(tab.name)}
-                    className={`flex items-center justify-center flex-1 py-2.5 font-medium text-sm transition-all duration-200 ${
+                    className={`flex items-center justify-center flex-1 py-2.5 font-medium text-sm ${
                       index === 0 ? 'rounded-l-md' : index === tabs.length - 1 ? 'rounded-r-md' : ''
                     } ${
                       activeTab === tab.name
