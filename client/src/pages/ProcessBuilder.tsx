@@ -132,12 +132,14 @@ export default function ProcessBuilder() {
                       <p className="text-sm text-muted-foreground mb-4 min-h-[40px]">
                         {process.description}
                       </p>
-                      <div className="text-sm text-muted-foreground mb-4">
-                        <span>{index === 0 ? '4 steps' : index === 1 ? '6 steps' : index === 2 ? '5 steps' : '7 steps'}</span>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-muted-foreground">
+                          {index === 0 ? '4 steps' : index === 1 ? '6 steps' : index === 2 ? '5 steps' : '7 steps'}
+                        </span>
+                        <Button variant="outline" size="sm" className="text-xs px-3 py-1">
+                          Use Template
+                        </Button>
                       </div>
-                      <Button variant="outline" size="sm" className="w-full">
-                        Use Template
-                      </Button>
                     </div>
                   </CardContent>
                 </Card>
