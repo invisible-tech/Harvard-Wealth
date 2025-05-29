@@ -8,7 +8,9 @@ import {
   Play, 
   BarChart3,
   ExternalLink,
-  Filter
+  Filter,
+  TrendingUp,
+  Calendar
 } from "lucide-react";
 import { useState } from "react";
 
@@ -126,6 +128,41 @@ export default function AgenticEngine() {
     if (percentage >= 80) return "bg-yellow-500";
     return "bg-orange-500";
   };
+
+  const marketThemes = [
+    {
+      category: "Regulation",
+      title: "AI Regulation Framework Proposed in EU Parliament",
+      description: "New comprehensive framework for AI governance outlines strict requirements for high-risk AI systems and transparency obligations.",
+      timeAgo: "2 days ago",
+      categoryColor: "bg-purple-100 text-purple-800",
+      type: "Rising"
+    },
+    {
+      category: "Industry", 
+      title: "Autonomous Agents Transforming Financial Services",
+      description: "Leading banks report 40% efficiency improvements after deploying autonomous AI agents for customer support and fraud detection.",
+      timeAgo: "4 days ago",
+      categoryColor: "bg-blue-100 text-blue-800",
+      type: "Steady"
+    },
+    {
+      category: "Research",
+      title: "Major Breakthrough in Agent Collaboration Frameworks", 
+      description: "Researchers develop new multi-agent collaboration protocol that significantly improves task coordination between specialized AI agents.",
+      timeAgo: "1 week ago",
+      categoryColor: "bg-green-100 text-green-800",
+      type: "Rising"
+    },
+    {
+      category: "Industry",
+      title: "Supply Chain Disruptions Mitigated by Predictive AI",
+      description: "Companies implementing agent-based supply chain optimization report 35% reduction in disruption impact during recent logistics challenges.",
+      timeAgo: "5 days ago", 
+      categoryColor: "bg-blue-100 text-blue-800",
+      type: "Rising"
+    }
+  ];
 
   return (
     <div className="content-fade-in">
@@ -288,6 +325,54 @@ export default function AgenticEngine() {
               </div>
             </CardContent>
           </Card>
+        </div>
+
+        {/* Recently Detected Market Themes */}
+        <div className="mt-8">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-2">
+              <TrendingUp className="h-5 w-5 text-blue-600" />
+              <h3 className="text-lg font-semibold text-foreground">Recently Detected Market Themes</h3>
+            </div>
+            <Button variant="outline" size="sm">
+              View All Insights
+            </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {marketThemes.map((theme, index) => (
+              <Card key={index} className="bg-white border-border">
+                <CardContent className="p-4">
+                  <div className="flex items-start justify-between mb-3">
+                    <Badge className={theme.categoryColor}>
+                      {theme.category}
+                    </Badge>
+                    <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                      <Calendar className="h-3 w-3" />
+                      <span>{theme.timeAgo}</span>
+                    </div>
+                  </div>
+                  <h4 className="font-medium text-foreground mb-2 text-sm">
+                    {theme.title}
+                  </h4>
+                  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+                    {theme.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-1">
+                      <TrendingUp className={`h-3 w-3 ${theme.type === 'Rising' ? 'text-green-600' : 'text-blue-600'}`} />
+                      <span className={`text-xs font-medium ${theme.type === 'Rising' ? 'text-green-600' : 'text-blue-600'}`}>
+                        {theme.type}
+                      </span>
+                    </div>
+                    <Button variant="ghost" size="sm" className="text-xs p-1 h-auto">
+                      <ExternalLink className="h-3 w-3" />
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>
