@@ -17,7 +17,8 @@ import {
   Search,
   Filter,
   Plus,
-  Link
+  Link,
+  TrendingUp
 } from "lucide-react";
 import { useState } from "react";
 
@@ -713,6 +714,263 @@ export default function ExpertMarketplace() {
                       <Plus className="w-4 h-4 mr-2" />
                       Create Payment
                     </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
+
+          {activeTab === "Metrics" && (
+            <div>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h2 className="text-2xl font-bold text-foreground">Performance Metrics</h2>
+                  <p className="text-muted-foreground">Monitor and analyze marketplace performance</p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Button variant="outline" size="sm">
+                    <Calendar className="h-4 w-4 mr-2" />
+                    Date Range
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    Export
+                  </Button>
+                </div>
+              </div>
+
+              {/* Metrics Navigation */}
+              <div className="mb-8">
+                <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
+                  <nav className="flex w-full">
+                    {[
+                      { name: "Overview", icon: BarChart3 },
+                      { name: "Performance", icon: BarChart3 },
+                      { name: "Task Metrics", icon: FileCheck },
+                      { name: "SLA Compliance", icon: CheckCircle }
+                    ].map((tab, index) => {
+                      const Icon = tab.icon;
+                      return (
+                        <button
+                          key={tab.name}
+                          className={`flex items-center justify-center flex-1 py-2.5 font-medium text-sm ${
+                            index === 0 ? 'rounded-l-md' : index === 3 ? 'rounded-r-md' : ''
+                          } ${
+                            index === 0
+                              ? "bg-white text-blue-600 shadow-sm border border-gray-200"
+                              : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
+                          }`}
+                        >
+                          <Icon className="w-4 h-4 mr-2" />
+                          {tab.name}
+                        </button>
+                      );
+                    })}
+                  </nav>
+                </div>
+              </div>
+
+              {/* Time Period Selector */}
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">Overview Metrics</h3>
+                  <p className="text-sm text-muted-foreground">Summary of key marketplace metrics</p>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
+                    <nav className="flex">
+                      {["Day", "Week", "Month"].map((period, index) => (
+                        <button
+                          key={period}
+                          className={`px-3 py-1.5 font-medium text-sm ${
+                            index === 1
+                              ? "bg-white text-blue-600 shadow-sm border border-gray-200 rounded"
+                              : "text-gray-600 hover:text-gray-800"
+                          }`}
+                        >
+                          {period}
+                        </button>
+                      ))}
+                    </nav>
+                  </div>
+                  <Button variant="outline" size="sm">
+                    <Eye className="h-4 w-4 mr-2" />
+                    View Details
+                  </Button>
+                </div>
+              </div>
+
+              {/* Overview Chart */}
+              <Card className="bg-white border-border mb-8">
+                <CardContent className="p-6">
+                  <div className="h-64 flex items-center justify-center bg-gray-50 rounded border-2 border-dashed border-gray-200">
+                    <div className="text-center">
+                      <BarChart3 className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                      <div className="text-sm text-gray-500">Chart visualization would appear here</div>
+                      <div className="flex items-center justify-between mt-8">
+                        <div className="text-sm text-gray-600">Average: 324</div>
+                        <div className="text-sm text-green-600">+24% from previous period</div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Prometheus Metrics */}
+              <Card className="bg-white border-border mb-8">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 bg-orange-100 rounded flex items-center justify-center">
+                        <BarChart3 className="w-4 h-4 text-orange-600" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground">Prometheus Metrics</h3>
+                        <p className="text-sm text-muted-foreground">Available metrics for monitoring and visualization</p>
+                      </div>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      <FileText className="h-4 w-4 mr-2" />
+                      Documentation
+                    </Button>
+                  </div>
+
+                  {/* Metrics Table */}
+                  <div className="border border-gray-200 rounded-lg overflow-hidden">
+                    {/* Table Header */}
+                    <div className="grid grid-cols-5 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700">
+                      <div>METRIC NAME</div>
+                      <div>DESCRIPTION</div>
+                      <div>TYPE</div>
+                      <div>STATUS</div>
+                      <div>ACTIONS</div>
+                    </div>
+
+                    {/* Table Rows */}
+                    {[
+                      {
+                        name: "expert_marketplace_task_completion_time",
+                        description: "Time taken to complete tasks",
+                        type: "histogram",
+                        status: "healthy",
+                        statusColor: "bg-green-100 text-green-800"
+                      },
+                      {
+                        name: "expert_marketplace_queue_size",
+                        description: "Number of tasks in queue",
+                        type: "gauge",
+                        status: "healthy",
+                        statusColor: "bg-green-100 text-green-800"
+                      },
+                      {
+                        name: "expert_marketplace_error_rate",
+                        description: "Task processing error rate",
+                        type: "counter",
+                        status: "warning",
+                        statusColor: "bg-yellow-100 text-yellow-800"
+                      },
+                      {
+                        name: "expert_marketplace_expert_availability",
+                        description: "Number of available experts",
+                        type: "gauge",
+                        status: "healthy",
+                        statusColor: "bg-green-100 text-green-800"
+                      },
+                      {
+                        name: "expert_marketplace_sla_breach_count",
+                        description: "Count of SLA breaches",
+                        type: "counter",
+                        status: "critical",
+                        statusColor: "bg-red-100 text-red-800"
+                      }
+                    ].map((metric, index) => (
+                      <div key={index} className="grid grid-cols-5 gap-4 p-4 border-b border-gray-200 text-sm">
+                        <div className="font-mono text-gray-900">{metric.name}</div>
+                        <div className="text-gray-600">{metric.description}</div>
+                        <div className="text-gray-600">{metric.type}</div>
+                        <div>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${metric.statusColor}`}>
+                            {metric.status}
+                          </span>
+                        </div>
+                        <div>
+                          <Button variant="link" size="sm" className="p-0 h-auto text-blue-600">
+                            View
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Available Metrics for Monitoring */}
+              <Card className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-6 h-6 bg-blue-100 rounded flex items-center justify-center">
+                        <BarChart3 className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground">Available Metrics for Monitoring</h3>
+                        <p className="text-sm text-muted-foreground">Configure alerts and monitoring settings</p>
+                      </div>
+                    </div>
+                    <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                      <Plus className="w-4 h-4 mr-2" />
+                      New Alert
+                    </Button>
+                  </div>
+
+                  {/* Monitoring Settings */}
+                  <div className="space-y-4">
+                    {[
+                      {
+                        name: "Task Queue Size",
+                        description: "Alerts when task queue exceeds threshold",
+                        status: "Enabled"
+                      },
+                      {
+                        name: "Expert Response Time",
+                        description: "Monitors average time to accept tasks",
+                        status: "Enabled"
+                      },
+                      {
+                        name: "SLA Compliance",
+                        description: "Alerts on potential SLA breaches",
+                        status: "Enabled"
+                      },
+                      {
+                        name: "Error Rate",
+                        description: "Monitors error rate in task processing",
+                        status: "Disabled"
+                      },
+                      {
+                        name: "System Load",
+                        description: "Alerts on system resource utilization",
+                        status: "Enabled"
+                      }
+                    ].map((monitor, index) => (
+                      <div key={index} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div className="flex-1">
+                          <h4 className="font-medium text-gray-900">{monitor.name}</h4>
+                          <p className="text-sm text-gray-600">{monitor.description}</p>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            monitor.status === "Enabled" 
+                              ? "bg-green-100 text-green-800" 
+                              : "bg-gray-100 text-gray-600"
+                          }`}>
+                            {monitor.status}
+                          </span>
+                          <Button variant="outline" size="sm">
+                            Configure
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
