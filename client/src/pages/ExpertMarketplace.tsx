@@ -511,6 +511,92 @@ export default function ExpertMarketplace() {
               </div>
             </div>
           )}
+
+          {activeTab === "Talent Pool" && (
+            <div>
+              {/* Header Section */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="relative flex-1 max-w-md">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <input
+                    type="text"
+                    placeholder="Search experts..."
+                    className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Button variant="outline" size="sm">
+                    <Filter className="h-4 w-4 mr-2" />
+                    Filter by Skill
+                  </Button>
+                  <Button variant="outline" size="sm">
+                    Export List
+                  </Button>
+                  <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Invite Expert
+                  </Button>
+                </div>
+              </div>
+
+              {/* Talent Pool Table */}
+              <div className="bg-white rounded-lg border border-gray-200">
+                {/* Table Header */}
+                <div className="grid grid-cols-7 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700">
+                  <div className="flex items-center space-x-1">
+                    <span>NAME</span>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                    </svg>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <span>EXPERTISE</span>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                    </svg>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <span>TASKS COMPLETED</span>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                    </svg>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <span>AVG. RESPONSE TIME</span>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                    </svg>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <span>RATING</span>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                    </svg>
+                  </div>
+                  <div className="flex items-center space-x-1">
+                    <span>STATUS</span>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                    </svg>
+                  </div>
+                  <div>ACTIONS</div>
+                </div>
+
+                {/* Empty State */}
+                <div className="p-12 text-center">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                    <Users className="w-8 h-8 text-gray-400" />
+                  </div>
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">No experts found</h3>
+                  <p className="text-gray-500 mb-6">Invite experts to join your talent pool</p>
+                  <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Invite Expert
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
           
           {activeTab === "Dashboard" && (
             <div>
