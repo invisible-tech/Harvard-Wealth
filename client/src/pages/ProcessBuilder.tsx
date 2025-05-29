@@ -108,45 +108,42 @@ export default function ProcessBuilder() {
   return (
     <div className="content-fade-in">
       <div className="max-w-7xl mx-auto">
-        {/* Process Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {processes.map((process, index) => {
-            const Icon = process.icon;
-            const StatusIcon = process.statusIcon;
-            return (
-              <Card key={index} className="bg-white border-border">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-10 h-10 ${process.iconBg} rounded-lg flex items-center justify-center`}>
-                        <Icon className={`${process.iconColor} h-5 w-5`} />
+        {/* Process Templates Section */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-lg font-semibold text-foreground">Process Templates</h3>
+            <Button variant="outline" size="sm">
+              View All Templates
+            </Button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {processes.map((process, index) => {
+              const Icon = process.icon;
+              return (
+                <Card key={index} className="bg-white border-border p-6">
+                  <CardContent className="p-0">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <Icon className="h-6 w-6 text-blue-600" />
                       </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-foreground">
-                          {process.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          {process.description}
-                        </p>
+                      <h4 className="font-semibold text-foreground mb-2">
+                        {process.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground mb-4 min-h-[40px]">
+                        {process.description}
+                      </p>
+                      <div className="text-sm text-muted-foreground mb-4">
+                        <span>{index === 0 ? '4 steps' : index === 1 ? '6 steps' : index === 2 ? '5 steps' : '7 steps'}</span>
                       </div>
+                      <Button variant="outline" size="sm" className="w-full">
+                        Use Template
+                      </Button>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <div className={`w-3 h-3 rounded-full ${getStatusColor(process.status)}`} />
-                      <span className="text-sm font-medium text-foreground">
-                        {process.status}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-muted-foreground">
-                      Last run: {process.lastRun}
-                    </div>
-                    <StatusIcon className={`h-4 w-4 ${getStatusColor(process.status).replace('bg-', 'text-')}`} />
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
 
         {/* Your Processes Section */}
