@@ -731,6 +731,300 @@ export default function AgenticEngine() {
       );
     }
 
+    if (activeTab === "Metrics") {
+      return (
+        <div>
+          {/* Metrics Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-xl font-semibold text-foreground mb-2">Team Metrics Dashboard</h2>
+              <p className="text-sm text-muted-foreground">Performance metrics and analytics across all agent teams</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Button variant="outline" className="bg-white border-gray-200">
+                <ExternalLink className="w-4 h-4 mr-2" />
+                Export Data
+              </Button>
+              <Button variant="outline" className="bg-white border-gray-200">
+                <Calendar className="w-4 h-4 mr-2" />
+                Last 30 Days
+              </Button>
+            </div>
+          </div>
+
+          {/* Top Metrics Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            {/* Average Team Success Rate */}
+            <Card className="bg-white border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-medium text-foreground">Average Team Success Rate</h3>
+                  <div className="flex items-center text-xs">
+                    <TrendingUp className="w-3 h-3 text-green-600 mr-1" />
+                    <span className="text-green-600">+2.1% increase</span>
+                  </div>
+                </div>
+                <div className="text-center mb-4">
+                  <div className="text-4xl font-bold text-foreground mb-1">89%</div>
+                  <div className="text-sm text-muted-foreground">Average across 7 teams</div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
+                  <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '89%' }} />
+                </div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <div>
+                    <div>Lowest</div>
+                    <div className="font-medium">78%</div>
+                  </div>
+                  <div className="text-center">
+                    <div>Average</div>
+                    <div className="font-medium">89%</div>
+                  </div>
+                  <div className="text-right">
+                    <div>Highest</div>
+                    <div className="font-medium">96%</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Average Latency */}
+            <Card className="bg-white border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-medium text-foreground">Average Latency</h3>
+                  <div className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">
+                    Measured in ms
+                  </div>
+                </div>
+                <div className="text-center mb-4">
+                  <div className="text-4xl font-bold text-foreground mb-1">646<span className="text-lg">ms</span></div>
+                  <div className="text-sm text-muted-foreground">Average response time</div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
+                  <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '65%' }} />
+                </div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <div>
+                    <div>Fastest</div>
+                    <div className="font-medium">350ms</div>
+                  </div>
+                  <div className="text-center">
+                    <div>Average</div>
+                    <div className="font-medium">646ms</div>
+                  </div>
+                  <div className="text-right">
+                    <div>Slowest</div>
+                    <div className="font-medium">1480ms</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Token Usage */}
+            <Card className="bg-white border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-medium text-foreground">Token Usage</h3>
+                  <div className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded">
+                    Last 30 days
+                  </div>
+                </div>
+                <div className="text-center mb-4">
+                  <div className="text-4xl font-bold text-foreground mb-1">310,000</div>
+                  <div className="text-sm text-muted-foreground">Total tokens used across all teams</div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
+                  <div className="bg-purple-500 h-2 rounded-full" style={{ width: '75%' }} />
+                </div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <div>
+                    <div>Per Team Average</div>
+                    <div className="font-medium">44,286 tokens</div>
+                  </div>
+                  <div className="text-right">
+                    <div>Daily Avg: 10,333</div>
+                    <div>Monthly Cap: 2,500,000</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Average Error Rate */}
+            <Card className="bg-white border-border">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-sm font-medium text-foreground">Average Error Rate</h3>
+                  <div className="flex items-center text-xs">
+                    <span className="text-red-600">↓ 0.8% decrease</span>
+                  </div>
+                </div>
+                <div className="text-center mb-4">
+                  <div className="text-4xl font-bold text-foreground mb-1">3.3%</div>
+                  <div className="text-sm text-muted-foreground">Average error rate across all teams</div>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
+                  <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '33%' }} />
+                </div>
+                <div className="flex justify-between text-xs text-muted-foreground">
+                  <div>
+                    <div>Lowest</div>
+                    <div className="font-medium">1.2%</div>
+                  </div>
+                  <div className="text-center">
+                    <div>Average</div>
+                    <div className="font-medium">3.3%</div>
+                  </div>
+                  <div className="text-right">
+                    <div>Highest</div>
+                    <div className="font-medium">6.7%</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Team Health and Guardrails */}
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold text-foreground mb-6">Team Health and Guardrails</h3>
+            <p className="text-sm text-muted-foreground mb-6">Safety, reliability, and compliance metrics across all teams</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              {/* Latency SLA */}
+              <Card className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-medium text-foreground">Latency SLA</h4>
+                    <Badge className="bg-green-100 text-green-800">Healthy</Badge>
+                  </div>
+                  <div className="text-sm text-muted-foreground mb-3">
+                    Response time within defined service level agreement
+                  </div>
+                  <div className="text-2xl font-bold text-foreground mb-2">650ms</div>
+                  <div className="text-xs text-muted-foreground mb-2">Target: &lt;800ms</div>
+                  <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                    <div className="bg-green-500 h-2 rounded-full" style={{ width: '81%' }} />
+                  </div>
+                  <div className="flex items-center text-xs text-green-600">
+                    <TrendingUp className="w-3 h-3 mr-1" />
+                    Improving
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Success Rate */}
+              <Card className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-medium text-foreground">Success Rate</h4>
+                    <Badge className="bg-yellow-100 text-yellow-800">Warning</Badge>
+                  </div>
+                  <div className="text-sm text-muted-foreground mb-3">
+                    Percentage of requests completed successfully
+                  </div>
+                  <div className="text-2xl font-bold text-foreground mb-2">89%</div>
+                  <div className="text-xs text-muted-foreground mb-2">Target: ≥95%</div>
+                  <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                    <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '89%' }} />
+                  </div>
+                  <div className="flex items-center text-xs text-gray-600">
+                    → Stable
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Hallucination Rate */}
+              <Card className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-medium text-foreground">Hallucination Rate</h4>
+                    <Badge className="bg-yellow-100 text-yellow-800">Warning</Badge>
+                  </div>
+                  <div className="text-sm text-muted-foreground mb-3">
+                    Rate of inaccurate or fabricated information
+                  </div>
+                  <div className="text-2xl font-bold text-foreground mb-2">3.6%</div>
+                  <div className="text-xs text-muted-foreground mb-2">Target: &lt;2%</div>
+                  <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                    <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '36%' }} />
+                  </div>
+                  <div className="flex items-center text-xs text-red-600">
+                    ↑ Worsening
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Prompt Injection Protected */}
+              <Card className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-medium text-foreground">Prompt Injection Protected</h4>
+                    <Badge className="bg-green-100 text-green-800">Healthy</Badge>
+                  </div>
+                  <div className="text-sm text-muted-foreground mb-3">
+                    Protection against malicious prompt manipulation attempts
+                  </div>
+                  <div className="text-2xl font-bold text-foreground mb-2">99.7%</div>
+                  <div className="text-xs text-muted-foreground mb-2">Protected requests</div>
+                  <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                    <div className="bg-green-500 h-2 rounded-full" style={{ width: '99.7%' }} />
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    42 attempted injections blocked this month
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Content Safety Filter */}
+              <Card className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-medium text-foreground">Content Safety Filter</h4>
+                    <Badge className="bg-green-100 text-green-800">Healthy</Badge>
+                  </div>
+                  <div className="text-sm text-muted-foreground mb-3">
+                    Detection and filtering of unsafe or harmful content
+                  </div>
+                  <div className="text-2xl font-bold text-foreground mb-2">99.9%</div>
+                  <div className="text-xs text-muted-foreground mb-2">Detection accuracy</div>
+                  <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                    <div className="bg-green-500 h-2 rounded-full" style={{ width: '99.9%' }} />
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    28 unsafe content requests blocked this month
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Incorrect Tool Usage */}
+              <Card className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-sm font-medium text-foreground">Incorrect Tool Usage</h4>
+                    <Badge className="bg-yellow-100 text-yellow-800">Warning</Badge>
+                  </div>
+                  <div className="text-sm text-muted-foreground mb-3">
+                    Rate of incorrect or inappropriate tool invocation
+                  </div>
+                  <div className="text-2xl font-bold text-foreground mb-2">2.8%</div>
+                  <div className="text-xs text-muted-foreground mb-2">Target: &lt;1%</div>
+                  <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                    <div className="bg-yellow-500 h-2 rounded-full" style={{ width: '28%' }} />
+                  </div>
+                  <div className="flex items-center text-xs text-green-600">
+                    <TrendingUp className="w-3 h-3 mr-1" />
+                    Improving
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     // Default Engine Overview content
     return (
       <div>
