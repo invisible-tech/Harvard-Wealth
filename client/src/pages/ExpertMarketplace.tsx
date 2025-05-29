@@ -117,24 +117,28 @@ export default function ExpertMarketplace() {
       <div>
         {/* Task Navigation Tabs */}
         <div className="mb-6">
-          <nav className="flex space-x-8">
-            {taskTabs.map((tab) => (
-              <button
-                key={tab.name}
-                onClick={() => setTaskTab(tab.name)}
-                className={`flex items-center space-x-2 px-1 py-2 text-sm font-medium border-b-2 ${
-                  taskTab === tab.name
-                    ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-muted-foreground hover:text-foreground hover:border-gray-300"
-                }`}
-              >
-                <span>{tab.name}</span>
-                <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
-                  ({tab.count})
-                </span>
-              </button>
-            ))}
-          </nav>
+          <div className="bg-gray-50 rounded-lg border border-gray-200 p-1 max-w-md">
+            <nav className="flex w-full">
+              {taskTabs.map((tab, index) => (
+                <button
+                  key={tab.name}
+                  onClick={() => setTaskTab(tab.name)}
+                  className={`flex items-center justify-center flex-1 py-2.5 font-medium text-sm ${
+                    index === 0 ? 'rounded-l-md' : index === taskTabs.length - 1 ? 'rounded-r-md' : ''
+                  } ${
+                    taskTab === tab.name
+                      ? "bg-white text-blue-600 shadow-sm border border-gray-200"
+                      : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
+                  }`}
+                >
+                  <span className="mr-1">{tab.name}</span>
+                  <span className="bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded text-xs">
+                    ({tab.count})
+                  </span>
+                </button>
+              ))}
+            </nav>
+          </div>
         </div>
 
         {/* Search and Filter */}
