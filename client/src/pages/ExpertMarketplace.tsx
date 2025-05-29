@@ -16,7 +16,8 @@ import {
   Calendar,
   Search,
   Filter,
-  Plus
+  Plus,
+  Link
 } from "lucide-react";
 import { useState } from "react";
 
@@ -163,66 +164,228 @@ export default function ExpertMarketplace() {
           </div>
         </div>
 
-        {/* Tasks Section */}
-        <div>
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-foreground">Tasks Assigned to You</h3>
-          </div>
+        {/* Task Content Based on Active Tab */}
+        {taskTab === "Assigned" && (
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-foreground">Tasks Assigned to You</h3>
+            </div>
 
-          <div className="space-y-4">
-            {myTasks.map((task) => (
-              <Card key={task.id} className="bg-white border-border">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <div className="w-6 h-6 bg-blue-100 rounded flex items-center justify-center">
-                          <FileCheck className="h-4 w-4 text-blue-600" />
+            <div className="space-y-4">
+              {myTasks.map((task) => (
+                <Card key={task.id} className="bg-white border-border">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-3">
+                          <div className="w-6 h-6 bg-blue-100 rounded flex items-center justify-center">
+                            <FileCheck className="h-4 w-4 text-blue-600" />
+                          </div>
+                          <h4 className="text-base font-medium text-foreground">{task.title}</h4>
+                          <Badge className={task.priorityColor}>
+                            {task.priority}
+                          </Badge>
                         </div>
-                        <h4 className="text-base font-medium text-foreground">{task.title}</h4>
-                        <Badge className={task.priorityColor}>
-                          {task.priority}
-                        </Badge>
-                      </div>
-                      
-                      <div className="flex items-center space-x-6 text-sm text-muted-foreground mb-4">
-                        <div className="flex items-center space-x-1">
-                          <Clock className="h-4 w-4" />
-                          <span>Due: {task.dueDate}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <FileText className="h-4 w-4" />
-                          <span>{task.category}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center space-x-4">
-                        <div className="flex-1">
-                          <div className="w-full bg-gray-200 rounded-full h-2">
-                            <div 
-                              className={`h-2 rounded-full ${task.progressColor}`}
-                              style={{ width: `${task.progress}%` }}
-                            />
+                        
+                        <div className="flex items-center space-x-6 text-sm text-muted-foreground mb-4">
+                          <div className="flex items-center space-x-1">
+                            <Clock className="h-4 w-4" />
+                            <span>Due: {task.dueDate}</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <FileText className="h-4 w-4" />
+                            <span>{task.category}</span>
                           </div>
                         </div>
-                        <span className="text-sm font-medium text-foreground">{task.progress}%</span>
+
+                        <div className="flex items-center space-x-4">
+                          <div className="flex-1">
+                            <div className="w-full bg-gray-200 rounded-full h-2">
+                              <div 
+                                className={`h-2 rounded-full ${task.progressColor}`}
+                                style={{ width: `${task.progress}%` }}
+                              />
+                            </div>
+                          </div>
+                          <span className="text-sm font-medium text-foreground">{task.progress}%</span>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center space-x-2 ml-6">
+                        <Button variant="outline" size="sm">
+                          Continue
+                        </Button>
+                        <Button variant="outline" size="sm">
+                          Mark Complete
+                        </Button>
                       </div>
                     </div>
-
-                    <div className="flex items-center space-x-2 ml-6">
-                      <Button variant="outline" size="sm">
-                        Continue
-                      </Button>
-                      <Button variant="outline" size="sm">
-                        Mark Complete
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
+        {taskTab === "Completed" && (
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-foreground">Your Completed Tasks</h3>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  title: "Customer feedback analysis",
+                  dueDate: "Jul 18, 3:00 PM",
+                  completedDate: "Jul 18, 2:45 PM",
+                  type: "Data Analysis",
+                  rating: 5
+                },
+                {
+                  title: "Competitor pricing validation",
+                  dueDate: "Jul 17, 5:00 PM", 
+                  completedDate: "Jul 17, 4:30 PM",
+                  type: "Content Verification",
+                  rating: 4
+                }
+              ].map((task, index) => (
+                <Card key={index} className="bg-white border-border">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-3">
+                          <div className="w-6 h-6 bg-green-100 rounded flex items-center justify-center">
+                            <CheckCircle className="h-4 w-4 text-green-600" />
+                          </div>
+                          <h4 className="text-base font-medium text-foreground">{task.title}</h4>
+                          <Badge className="bg-green-100 text-green-800 hover:bg-green-100">
+                            Completed
+                          </Badge>
+                        </div>
+                        
+                        <div className="flex items-center space-x-6 text-sm text-muted-foreground mb-4">
+                          <div className="flex items-center space-x-1">
+                            <span>Due: {task.dueDate}</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <span>Completed: {task.completedDate}</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <span>{task.type}</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center space-x-2">
+                          <span className="text-sm text-muted-foreground">Rating:</span>
+                          <div className="flex">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-4 w-4 ${
+                                  i < task.rating ? "text-yellow-400 fill-current" : "text-gray-300"
+                                }`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center space-x-2 ml-6">
+                        <Button variant="outline" size="sm">
+                          View Details
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {taskTab === "Available" && (
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-semibold text-foreground">Tasks Available to Claim</h3>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  title: "Market trend analysis report",
+                  estimatedTime: "1-2 hours",
+                  deadline: "Jul 25, 11:59 PM",
+                  type: "Document Review",
+                  priority: "Medium"
+                },
+                {
+                  title: "Product feature evaluation",
+                  estimatedTime: "30-45 mins",
+                  deadline: "Jul 26, 5:00 PM",
+                  type: "Technical Assessment",
+                  priority: "Hard"
+                },
+                {
+                  title: "Sales copy accuracy review",
+                  estimatedTime: "45-60 mins",
+                  deadline: "Jul 23, 3:00 PM",
+                  type: "Content Verification",
+                  priority: "Easy"
+                },
+                {
+                  title: "User survey data validation",
+                  estimatedTime: "1-1.5 hours",
+                  deadline: "Jul 24, 2:00 PM",
+                  type: "Data Analysis",
+                  priority: "Medium"
+                }
+              ].map((task, index) => (
+                <Card key={index} className="bg-white border-border">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-3">
+                          <div className="w-6 h-6 bg-blue-100 rounded flex items-center justify-center">
+                            <Link className="h-4 w-4 text-blue-600" />
+                          </div>
+                          <h4 className="text-base font-medium text-foreground">{task.title}</h4>
+                          <Badge className={
+                            task.priority === "Hard" ? "bg-red-100 text-red-800 hover:bg-red-100" :
+                            task.priority === "Medium" ? "bg-yellow-100 text-yellow-800 hover:bg-yellow-100" :
+                            "bg-green-100 text-green-800 hover:bg-green-100"
+                          }>
+                            {task.priority}
+                          </Badge>
+                        </div>
+                        
+                        <div className="flex items-center space-x-6 text-sm text-muted-foreground mb-4">
+                          <div className="flex items-center space-x-1">
+                            <Clock className="h-4 w-4" />
+                            <span>Estimated time: {task.estimatedTime}</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <span>Deadline: {task.deadline}</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <FileText className="h-4 w-4" />
+                            <span>{task.type}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center space-x-2 ml-6">
+                        <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                          Claim Task
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   };
