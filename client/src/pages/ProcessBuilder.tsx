@@ -1,21 +1,121 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { GitBranch } from "lucide-react";
+import { 
+  GitBranch, 
+  Users, 
+  FileCheck, 
+  Shield,
+  Play,
+  Pause,
+  CheckCircle,
+  AlertTriangle
+} from "lucide-react";
 
 export default function ProcessBuilder() {
+  const processes = [
+    {
+      title: "Data Processing Pipeline",
+      description: "ETL workflows and data transformation",
+      status: "Running",
+      isActive: true,
+      icon: GitBranch,
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600",
+      lastRun: "2 minutes ago",
+      statusIcon: Play
+    },
+    {
+      title: "Customer Journey",
+      description: "User experience tracking and analytics",
+      status: "Paused",
+      isActive: false,
+      icon: Users,
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600",
+      lastRun: "1 hour ago",
+      statusIcon: Pause
+    },
+    {
+      title: "Document Approval",
+      description: "Automated document review workflow",
+      status: "Completed",
+      isActive: true,
+      icon: FileCheck,
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600",
+      lastRun: "5 minutes ago",
+      statusIcon: CheckCircle
+    },
+    {
+      title: "Fraud Detection",
+      description: "Real-time transaction monitoring",
+      status: "Alert",
+      isActive: false,
+      icon: Shield,
+      iconBg: "bg-gray-100",
+      iconColor: "text-gray-600",
+      lastRun: "30 seconds ago",
+      statusIcon: AlertTriangle
+    }
+  ];
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "Running":
+        return "bg-green-500";
+      case "Paused":
+        return "bg-yellow-500";
+      case "Completed":
+        return "bg-blue-500";
+      case "Alert":
+        return "bg-red-500";
+      default:
+        return "bg-gray-500";
+    }
+  };
+
   return (
     <div className="content-fade-in">
       <div className="max-w-7xl mx-auto">
-        <Card className="bg-white border-border p-8 text-center">
-          <CardContent className="p-0">
-            <GitBranch className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-foreground mb-2">
-              Process Builder
-            </h3>
-            <p className="text-muted-foreground">
-              Design and orchestrate complex data processing workflows.
-            </p>
-          </CardContent>
-        </Card>
+        {/* Process Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {processes.map((process, index) => {
+            const Icon = process.icon;
+            const StatusIcon = process.statusIcon;
+            return (
+              <Card key={index} className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className={`w-10 h-10 ${process.iconBg} rounded-lg flex items-center justify-center`}>
+                        <Icon className={`${process.iconColor} h-5 w-5`} />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-semibold text-foreground">
+                          {process.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {process.description}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className={`w-3 h-3 rounded-full ${getStatusColor(process.status)}`} />
+                      <span className="text-sm font-medium text-foreground">
+                        {process.status}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm text-muted-foreground">
+                      Last run: {process.lastRun}
+                    </div>
+                    <StatusIcon className={`h-4 w-4 ${getStatusColor(process.status).replace('bg-', 'text-')}`} />
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
