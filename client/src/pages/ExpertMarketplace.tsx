@@ -597,6 +597,127 @@ export default function ExpertMarketplace() {
               </div>
             </div>
           )}
+
+          {activeTab === "Payments" && (
+            <div>
+              {/* Payment Summary Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <Card className="bg-white border-border">
+                  <CardContent className="p-6">
+                    <div className="mb-2">
+                      <h3 className="text-sm font-medium text-muted-foreground">Pending Payments</h3>
+                    </div>
+                    <div className="text-3xl font-bold text-foreground mb-1">$0.00</div>
+                    <div className="flex items-center text-sm text-orange-600">
+                      <Clock className="h-4 w-4 mr-1" />
+                      Awaiting processing
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-border">
+                  <CardContent className="p-6">
+                    <div className="mb-2">
+                      <h3 className="text-sm font-medium text-muted-foreground">Approved Payments</h3>
+                    </div>
+                    <div className="text-3xl font-bold text-foreground mb-1">$0.00</div>
+                    <div className="flex items-center text-sm text-blue-600">
+                      <CheckCircle className="h-4 w-4 mr-1" />
+                      Ready for payment
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-border">
+                  <CardContent className="p-6">
+                    <div className="mb-2">
+                      <h3 className="text-sm font-medium text-muted-foreground">Paid This Month</h3>
+                    </div>
+                    <div className="text-3xl font-bold text-foreground mb-1">$0.00</div>
+                    <div className="flex items-center text-sm text-green-600">
+                      <CheckCircle className="h-4 w-4 mr-1" />
+                      Already processed
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="bg-white border-border">
+                  <CardContent className="p-6">
+                    <div className="mb-2">
+                      <h3 className="text-sm font-medium text-muted-foreground">Total Payments</h3>
+                    </div>
+                    <div className="text-3xl font-bold text-foreground mb-1">$0.00</div>
+                    <div className="text-sm text-muted-foreground">All time</div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Payment Management Section */}
+              <Card className="bg-white border-border">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground">Payment Management</h3>
+                      <p className="text-sm text-muted-foreground">Process and track payments to reviewers</p>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      Export
+                    </Button>
+                  </div>
+
+                  {/* Payment Tabs */}
+                  <div className="mb-6">
+                    <div className="bg-gray-50 rounded-lg border border-gray-200 p-1 max-w-md">
+                      <nav className="flex w-full">
+                        {["Pending", "Paid", "All Payments"].map((tab, index) => (
+                          <button
+                            key={tab}
+                            className={`flex items-center justify-center flex-1 py-2.5 font-medium text-sm ${
+                              index === 0 ? 'rounded-l-md' : index === 2 ? 'rounded-r-md' : ''
+                            } ${
+                              index === 0
+                                ? "bg-white text-blue-600 shadow-sm border border-gray-200"
+                                : "text-gray-600 hover:text-gray-800 hover:bg-gray-100"
+                            }`}
+                          >
+                            {tab}
+                          </button>
+                        ))}
+                      </nav>
+                    </div>
+                  </div>
+
+                  {/* Search */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="relative flex-1 max-w-md">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      <input
+                        type="text"
+                        placeholder="Search by reviewer name or email..."
+                        className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      />
+                    </div>
+                    <Button variant="outline" size="sm" className="ml-4">
+                      Deselect All
+                    </Button>
+                  </div>
+
+                  {/* Empty State */}
+                  <div className="p-12 text-center">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
+                      <CreditCard className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">No pending payments</h3>
+                    <p className="text-gray-500 mb-6">Payments that need to be processed will appear here</p>
+                    <Button className="bg-blue-600 text-white hover:bg-blue-700">
+                      <Plus className="w-4 h-4 mr-2" />
+                      Create Payment
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          )}
           
           {activeTab === "Dashboard" && (
             <div>
