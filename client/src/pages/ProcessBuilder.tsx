@@ -149,16 +149,16 @@ export default function ProcessBuilder() {
           })}
         </div>
 
-        {/* Your Processes Table */}
+        {/* Your Processes Section */}
         <div className="mt-8">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-lg font-semibold text-foreground">Your Processes</h3>
+            <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+              <Plus className="h-4 w-4 mr-2" />
+              Create Process
+            </Button>
+          </div>
           <Card className="bg-white border-border">
-            <div className="px-6 py-4 border-b border-border flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-foreground">Your Processes</h3>
-              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Plus className="h-4 w-4 mr-2" />
-                Create Process
-              </Button>
-            </div>
             <CardContent className="p-0">
               <div className="overflow-x-auto">
                 <table className="w-full">
