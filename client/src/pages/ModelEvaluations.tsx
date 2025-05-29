@@ -30,7 +30,7 @@ export default function ModelEvaluations() {
   ];
 
   return (
-    <div className="content-fade-in">
+    <div>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
