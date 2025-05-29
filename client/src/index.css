@@ -81,27 +81,16 @@
   }
   
   .content-fade-in {
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  @keyframes fadeIn {
-    from { 
-      opacity: 0; 
-      transform: translateY(10px); 
-    }
-    to { 
-      opacity: 1; 
-      transform: translateY(0); 
-    }
+    /* Remove animation */
   }
   
   .nav-item-hover {
-    transition: all 0.2s ease-in-out;
+    /* Remove transition */
   }
   
   .nav-item-hover:hover {
     background-color: hsl(var(--sidebar-accent));
-    transform: translateX(4px);
+    /* Remove transform */
   }
   
   .active-nav {
