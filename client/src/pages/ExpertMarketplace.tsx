@@ -116,8 +116,8 @@ export default function ExpertMarketplace() {
     return (
       <div>
         {/* Task Navigation Tabs */}
-        <div className="mb-6 flex justify-center">
-          <div className="bg-gray-50 rounded-lg border border-gray-200 p-1 max-w-md">
+        <div className="mb-6">
+          <div className="bg-gray-50 rounded-lg border border-gray-200 p-1">
             <nav className="flex w-full">
               {taskTabs.map((tab, index) => (
                 <button
