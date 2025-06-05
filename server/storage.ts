@@ -7,6 +7,7 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  validateUser(username: string, password: string): Promise<User | undefined>;
 }
 
 export class MemStorage implements IStorage {
@@ -16,6 +17,8 @@ export class MemStorage implements IStorage {
   constructor() {
     this.users = new Map();
     this.currentId = 1;
+    // Initialize with admin user
+    this.createUser({ username: "admin", password: "rocketship" });
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -33,6 +36,12 @@ export class MemStorage implements IStorage {
     const user: User = { ...insertUser, id };
     this.users.set(id, user);
     return user;
+  }
+
+  async validateUser(username: string, password: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find(
+      (user) => user.username === username && user.password === password,
+    );
   }
 }
 
