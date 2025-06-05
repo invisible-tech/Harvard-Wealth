@@ -4,6 +4,13 @@ import session from "express-session";
 import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 
+// Extend session interface to include userId
+declare module 'express-session' {
+  interface SessionData {
+    userId: number;
+  }
+}
+
 // Setup session middleware
 function setupSession(app: Express) {
   const pgStore = connectPg(session);

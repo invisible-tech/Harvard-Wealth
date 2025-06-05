@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import MobileMenu from "@/components/MobileMenu";
@@ -13,9 +14,11 @@ import ProcessBuilder from "@/pages/ProcessBuilder";
 import AgenticEngine from "@/pages/AgenticEngine";
 import ExpertMarketplace from "@/pages/ExpertMarketplace";
 import ModelEvaluations from "@/pages/ModelEvaluations";
+import Login from "@/pages/Login";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  const { isAuthenticated, isLoading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -25,6 +28,18 @@ function Router() {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-lg">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Login />;
+  }
 
   return (
     <div className="flex h-screen overflow-hidden">
