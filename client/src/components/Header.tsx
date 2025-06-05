@@ -1,6 +1,14 @@
 import { useLocation } from "wouter";
-import { Menu, Bell, Settings } from "lucide-react";
+import { Menu, Bell, Settings, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useAuth, useLogout } from "@/hooks/useAuth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const pageContent = {
   '/': { title: 'Platform Overview', subtitle: 'Manage your data platform and infrastructure' },
@@ -18,7 +26,17 @@ interface HeaderProps {
 
 export default function Header({ onMenuClick }: HeaderProps) {
   const [location] = useLocation();
+  const { user } = useAuth();
+  const logout = useLogout();
   const currentPage = pageContent[location as keyof typeof pageContent] || pageContent['/'];
+
+  const handleLogout = async () => {
+    try {
+      await logout.mutateAsync();
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
 
   return (
     <header className="bg-white border-b border-border px-4 lg:px-6 py-4">
@@ -57,6 +75,30 @@ export default function Header({ onMenuClick }: HeaderProps) {
           >
             <Settings className="h-5 w-5" />
           </Button>
+          
+          {/* User Menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <User className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56">
+              <div className="px-2 py-1.5">
+                <p className="text-sm font-medium">{user?.username}</p>
+                <p className="text-xs text-muted-foreground">Administrator</p>
+              </div>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={handleLogout}>
+                <LogOut className="mr-2 h-4 w-4" />
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>
