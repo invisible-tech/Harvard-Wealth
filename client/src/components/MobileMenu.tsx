@@ -45,15 +45,12 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       <div className="flex flex-col h-full">
         {/* Sidebar Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <img 
-                src={invisiblePlatformLogo} 
-                alt="Invisible Platform Logo" 
-                className="h-5 w-5"
-              />
-            </div>
-            <h1 className="text-lg font-semibold">Invisible Platform</h1>
+          <div className="flex items-center">
+            <img 
+              src={invisiblePlatformLogo} 
+              alt="Invisible Platform Logo" 
+              className="h-8"
+            />
           </div>
           {/* Mobile Close Button */}
           <button 
