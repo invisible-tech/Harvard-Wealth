@@ -8,6 +8,13 @@ import {
   CheckCircle,
   Bot
 } from "lucide-react";
+import { 
+  StatusBadge, 
+  StatusAlert, 
+  HealthIndicator, 
+  TaskStatus, 
+  MetricCard 
+} from "@/components/StatusComponents";
 
 export default function Platform() {
   const statsCards = [
@@ -103,7 +110,7 @@ export default function Platform() {
                     </div>
                   </div>
                   <div className="mt-4 flex items-center text-sm">
-                    <span className="text-green-600 font-medium">
+                    <span className="text-success font-medium">
                       {card.change}
                     </span>
                     <span className="text-muted-foreground ml-1">
@@ -177,6 +184,73 @@ export default function Platform() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Color Guidelines Demonstration */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+          {/* System Health Dashboard */}
+          <Card className="bg-white border-border">
+            <div className="px-6 py-4 border-b border-border">
+              <h3 className="text-lg font-semibold text-foreground">System Health</h3>
+            </div>
+            <CardContent className="p-6 space-y-4">
+              <HealthIndicator status="healthy" label="Database Connection" />
+              <HealthIndicator status="warning" label="API Gateway" />
+              <HealthIndicator status="critical" label="Cache Service" />
+              <HealthIndicator status="healthy" label="Message Queue" />
+            </CardContent>
+          </Card>
+
+          {/* Task Status Overview */}
+          <Card className="bg-white border-border">
+            <div className="px-6 py-4 border-b border-border">
+              <h3 className="text-lg font-semibold text-foreground">Task Status</h3>
+            </div>
+            <CardContent className="p-6 space-y-3">
+              <TaskStatus status="completed" label="Data Processing Complete" />
+              <TaskStatus status="in-progress" label="Model Training Running" />
+              <TaskStatus status="failed" label="Export Job Failed" />
+              <TaskStatus status="pending" label="Backup Scheduled" />
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Metrics with Semantic Colors */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+          <MetricCard title="Success Rate" value="98.5%" change={2.3} trend="up" />
+          <MetricCard title="Error Rate" value="1.2%" change={-0.8} trend="down" />
+          <MetricCard title="Response Time" value="245ms" change={15} trend="neutral" />
+          <MetricCard title="Throughput" value="1.2K/min" change={-5.2} trend="down" />
+        </div>
+
+        {/* Status Alerts */}
+        <div className="space-y-4 mt-6">
+          <StatusAlert status="success" title="Deployment Successful">
+            Version 2.1.0 has been successfully deployed to production environment.
+          </StatusAlert>
+          
+          <StatusAlert status="warning" title="High Memory Usage">
+            Memory usage is at 85%. Consider scaling up resources if this persists.
+          </StatusAlert>
+          
+          <StatusAlert status="error" title="Critical Error">
+            Database connection failed. Immediate attention required.
+          </StatusAlert>
+        </div>
+
+        {/* Status Badges Examples */}
+        <Card className="bg-white border-border mt-6">
+          <div className="px-6 py-4 border-b border-border">
+            <h3 className="text-lg font-semibold text-foreground">Component Status</h3>
+          </div>
+          <CardContent className="p-6">
+            <div className="flex flex-wrap gap-3">
+              <StatusBadge status="success">Online</StatusBadge>
+              <StatusBadge status="warning">Degraded</StatusBadge>
+              <StatusBadge status="error">Offline</StatusBadge>
+              <StatusBadge status="info">Maintenance</StatusBadge>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
