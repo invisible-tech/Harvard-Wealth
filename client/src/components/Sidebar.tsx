@@ -1,22 +1,21 @@
 import { Link, useLocation } from "wouter";
+import { User } from "lucide-react";
 import { 
-  Database, 
-  LayoutDashboard, 
-  Server, 
-  GitBranch, 
-  Bot, 
-  Users, 
-  BarChart3, 
-  User 
-} from "lucide-react";
+  PlatformIcon, 
+  DataIcon, 
+  ProcessIcon, 
+  AgentIcon, 
+  ExpertIcon, 
+  ModelIcon 
+} from "@/components/icons/PlatformIcon";
 
 const navigationItems = [
-  { path: "/platform", label: "Platform", icon: LayoutDashboard },
-  { path: "/data-environment", label: "Data Environment", icon: Server },
-  { path: "/process-builder", label: "Process Builder", icon: GitBranch },
-  { path: "/agentic-engine", label: "Agentic Engine", icon: Bot },
-  { path: "/expert-marketplace", label: "Expert Marketplace", icon: Users },
-  { path: "/model-evaluations", label: "Model Evaluations", icon: BarChart3 },
+  { path: "/platform", label: "Platform", icon: PlatformIcon },
+  { path: "/data-environment", label: "Data Environment", icon: DataIcon },
+  { path: "/process-builder", label: "Process Builder", icon: ProcessIcon },
+  { path: "/agentic-engine", label: "Agentic Engine", icon: AgentIcon },
+  { path: "/expert-marketplace", label: "Expert Marketplace", icon: ExpertIcon },
+  { path: "/model-evaluations", label: "Model Evaluations", icon: ModelIcon },
 ];
 
 export default function Sidebar() {
