@@ -1,6 +1,3 @@
-import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
-
 // Simple user type for authentication
 export interface User {
   id: number;
@@ -8,9 +5,7 @@ export interface User {
   password: string;
 }
 
-export const insertUserSchema = z.object({
-  username: z.string(),
-  password: z.string(),
-});
-
-export type InsertUser = z.infer<typeof insertUserSchema>;
+export interface InsertUser {
+  username: string;
+  password: string;
+}
