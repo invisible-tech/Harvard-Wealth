@@ -8,6 +8,7 @@ import {
   ExpertIcon, 
   ModelIcon 
 } from "@/components/icons/PlatformIcon";
+import invisiblePlatformLogo from "@/assets/invisible-platform-logo.svg";
 
 const navigationItems = [
   { path: "/platform", label: "Platform", icon: PlatformIcon },
@@ -35,7 +36,11 @@ export default function Sidebar() {
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <PlatformIcon className="h-4 w-4 text-primary-foreground" />
+              <img 
+                src={invisiblePlatformLogo} 
+                alt="Invisible Platform Logo" 
+                className="h-5 w-5"
+              />
             </div>
             <h1 className="text-lg font-semibold">Invisible Platform</h1>
           </div>

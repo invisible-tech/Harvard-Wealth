@@ -1,23 +1,22 @@
 import { Link, useLocation } from "wouter";
+import { User, X } from "lucide-react";
 import { 
-  Database, 
-  LayoutDashboard, 
-  Server, 
-  GitBranch, 
-  Bot, 
-  Users, 
-  BarChart3, 
-  User,
-  X
-} from "lucide-react";
+  PlatformIcon, 
+  DataIcon, 
+  ProcessIcon, 
+  AgentIcon, 
+  ExpertIcon, 
+  ModelIcon 
+} from "@/components/icons/PlatformIcon";
+import invisiblePlatformLogo from "@/assets/invisible-platform-logo.svg";
 
 const navigationItems = [
-  { path: "/platform", label: "Platform", icon: LayoutDashboard },
-  { path: "/data-environment", label: "Data Environment", icon: Server },
-  { path: "/process-builder", label: "Process Builder", icon: GitBranch },
-  { path: "/agentic-engine", label: "Agentic Engine", icon: Bot },
-  { path: "/expert-marketplace", label: "Expert Marketplace", icon: Users },
-  { path: "/model-evaluations", label: "Model Evaluations", icon: BarChart3 },
+  { path: "/platform", label: "Platform", icon: PlatformIcon },
+  { path: "/data-environment", label: "Data Environment", icon: DataIcon },
+  { path: "/process-builder", label: "Process Builder", icon: ProcessIcon },
+  { path: "/agentic-engine", label: "Agentic Engine", icon: AgentIcon },
+  { path: "/expert-marketplace", label: "Expert Marketplace", icon: ExpertIcon },
+  { path: "/model-evaluations", label: "Model Evaluations", icon: ModelIcon },
 ];
 
 interface MobileMenuProps {
@@ -48,7 +47,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Database className="h-4 w-4 text-primary-foreground" />
+              <img 
+                src={invisiblePlatformLogo} 
+                alt="Invisible Platform Logo" 
+                className="h-5 w-5"
+              />
             </div>
             <h1 className="text-lg font-semibold">Invisible Platform</h1>
           </div>
