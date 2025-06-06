@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -20,6 +20,7 @@ import NotFound from "@/pages/not-found";
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [location] = useLocation();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -39,6 +40,35 @@ function Router() {
 
   if (!isAuthenticated) {
     return <Login />;
+  }
+
+  // Special handling for Process Builder - full page layout with white background
+  if (location === "/process-builder") {
+    return (
+      <div className="flex h-screen overflow-hidden bg-white">
+        {/* Mobile Overlay */}
+        {isMobileMenuOpen && (
+          <div 
+            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+            onClick={closeMobileMenu}
+          />
+        )}
+        
+        {/* Mobile Menu */}
+        <MobileMenu 
+          isOpen={isMobileMenuOpen} 
+          onClose={closeMobileMenu} 
+        />
+        
+        {/* Desktop Sidebar */}
+        <Sidebar />
+        
+        {/* Main Content - No Header, No Padding */}
+        <main className="flex-1 min-w-0">
+          <ProcessBuilder />
+        </main>
+      </div>
+    );
   }
 
   return (
@@ -69,7 +99,6 @@ function Router() {
             <Route path="/" component={Platform} />
             <Route path="/platform" component={Platform} />
             <Route path="/data-environment" component={DataEnvironment} />
-            <Route path="/process-builder" component={ProcessBuilder} />
             <Route path="/agentic-engine" component={AgenticEngine} />
             <Route path="/expert-marketplace" component={ExpertMarketplace} />
             <Route path="/model-evaluations" component={ModelEvaluations} />
