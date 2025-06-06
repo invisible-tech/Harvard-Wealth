@@ -4,44 +4,26 @@ import { users, type User, type InsertUser } from "@shared/schema";
 // you might need
 
 export interface IStorage {
-  getUser(id: number): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
   validateUser(username: string, password: string): Promise<User | undefined>;
+  getUser(id: number): Promise<User | undefined>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  currentId: number;
-
-  constructor() {
-    this.users = new Map();
-    this.currentId = 1;
-    // Initialize with admin user
-    this.createUser({ username: "admin", password: "rocketship" });
-  }
+  private readonly adminUser: User = {
+    id: 1,
+    username: "admin",
+    password: "rocketship"
+  };
 
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    return id === 1 ? this.adminUser : undefined;
   }
 
   async validateUser(username: string, password: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username && user.password === password,
-    );
+    if (username === "admin" && password === "rocketship") {
+      return this.adminUser;
+    }
+    return undefined;
   }
 }
 

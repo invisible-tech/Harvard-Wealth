@@ -1,7 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import session from "express-session";
-import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 
 // Extend session interface to include userId
@@ -13,22 +12,14 @@ declare module 'express-session' {
 
 // Setup session middleware
 function setupSession(app: Express) {
-  const pgStore = connectPg(session);
-  const sessionStore = new pgStore({
-    conString: process.env.DATABASE_URL,
-    createTableIfMissing: true,
-    ttl: 7 * 24 * 60 * 60, // 7 days
-  });
-
   app.use(session({
-    store: sessionStore,
-    secret: process.env.SESSION_SECRET || 'fallback-secret-key',
+    secret: 'invisible-platform-secret',
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: false, // Set to true in production with HTTPS
+      secure: false,
       httpOnly: true,
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
     },
   }));
 }
