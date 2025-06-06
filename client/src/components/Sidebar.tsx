@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { User } from "lucide-react";
+import { User, Database } from "lucide-react";
 import { 
   PlatformIcon, 
   DataIcon, 
@@ -35,7 +35,7 @@ export default function Sidebar() {
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-800">
           <div className="flex items-center space-x-3">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <Database className="h-4 w-4 text-primary-foreground" />
+              <PlatformIcon className="h-4 w-4 text-primary-foreground" />
             </div>
             <h1 className="text-lg font-semibold">Invisible Platform</h1>
           </div>
