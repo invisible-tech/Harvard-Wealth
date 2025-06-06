@@ -19,8 +19,12 @@
   --secondary-foreground: 24 9.8% 10%;
   --accent: 60 4.8% 95.9%;
   --accent-foreground: 24 9.8% 10%;
-  --destructive: 0 84.2% 60.2%;
+  --destructive: 0 76% 46%; /* #DC2626 - Red for critical errors */
   --destructive-foreground: 60 9.1% 97.8%;
+  --success: 142 71% 45%; /* #22C55E - Green for positive status */
+  --success-foreground: 0 0% 98%;
+  --warning: 25 95% 53%; /* #F97316 - Orange for warnings */
+  --warning-foreground: 0 0% 98%;
   --ring: 220 14% 16%;
   --radius: 0.5rem;
   --sidebar-background: 240 6% 6%; /* #0f0f0f */
@@ -50,8 +54,12 @@
   --secondary-foreground: 0 0% 98%;
   --accent: 240 4% 16%;
   --accent-foreground: 0 0% 98%;
-  --destructive: 0 62.8% 30.6%;
+  --destructive: 0 76% 46%; /* #DC2626 - Red for critical errors */
   --destructive-foreground: 0 0% 98%;
+  --success: 142 71% 45%; /* #22C55E - Green for positive status */
+  --success-foreground: 0 0% 98%;
+  --warning: 25 95% 53%; /* #F97316 - Orange for warnings */
+  --warning-foreground: 0 0% 98%;
   --ring: 240 5% 84%;
 }
 
@@ -104,5 +112,42 @@
   
   .mobile-menu-active {
     transform: translateX(0);
+  }
+
+  /* Semantic color utilities following color guidelines */
+  .text-success {
+    color: hsl(var(--success));
+  }
+  
+  .text-warning {
+    color: hsl(var(--warning));
+  }
+  
+  .text-error {
+    color: hsl(var(--destructive));
+  }
+  
+  .bg-success {
+    background-color: hsl(var(--success));
+  }
+  
+  .bg-warning {
+    background-color: hsl(var(--warning));
+  }
+  
+  .bg-error {
+    background-color: hsl(var(--destructive));
+  }
+  
+  .border-success {
+    border-color: hsl(var(--success));
+  }
+  
+  .border-warning {
+    border-color: hsl(var(--warning));
+  }
+  
+  .border-error {
+    border-color: hsl(var(--destructive));
   }
 }
