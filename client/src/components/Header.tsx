@@ -1,7 +1,7 @@
 import { useLocation } from "wouter";
 import { Menu, Bell, Settings, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth, useLogout } from "@/hooks/useAuth";
+import { useAuth, logout } from "@/hooks/useAuth";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,15 +27,10 @@ interface HeaderProps {
 export default function Header({ onMenuClick }: HeaderProps) {
   const [location] = useLocation();
   const { user } = useAuth();
-  const logout = useLogout();
   const currentPage = pageContent[location as keyof typeof pageContent] || pageContent['/'];
 
-  const handleLogout = async () => {
-    try {
-      await logout.mutateAsync();
-    } catch (error) {
-      console.error('Logout failed:', error);
-    }
+  const handleLogout = () => {
+    logout();
   };
 
   return (
