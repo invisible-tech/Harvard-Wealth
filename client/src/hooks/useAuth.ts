@@ -9,15 +9,11 @@ interface User {
 }
 
 export function useAuth() {
-  const { data, isLoading } = useQuery<{ user: User }>({
-    queryKey: ["/api/auth/user"],
-    retry: false,
-  });
-
+  // Auth disabled for testing - return mock authenticated state
   return {
-    user: data?.user,
-    isLoading,
-    isAuthenticated: !!data?.user,
+    user: { name: "Test User", email: "test@example.com" },
+    isLoading: false,
+    isAuthenticated: true,
   };
 }
 

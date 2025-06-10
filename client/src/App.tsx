@@ -38,9 +38,10 @@ function Router() {
     );
   }
 
-  if (!isAuthenticated) {
-    return <Login />;
-  }
+  // Temporarily disable auth for testing
+  // if (!isAuthenticated) {
+  //   return <Login />;
+  // }
 
   // Special handling for Process Builder - full page layout with white background
   if (location === "/process-builder") {
