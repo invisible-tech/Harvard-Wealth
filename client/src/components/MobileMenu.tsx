@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { User, X } from "lucide-react";
+import { User, X, Heart } from "lucide-react";
 import { 
   PlatformIcon, 
   DataIcon, 
@@ -17,6 +17,7 @@ const navigationItems = [
   { path: "/agentic-engine", label: "Agentic Engine", icon: AgentIcon },
   { path: "/expert-marketplace", label: "Expert Marketplace", icon: ExpertIcon },
   { path: "/model-evaluations", label: "Model Evaluations", icon: ModelIcon },
+  { path: "/favorites", label: "Favorites", icon: Heart },
 ];
 
 interface MobileMenuProps {
