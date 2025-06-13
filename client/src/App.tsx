@@ -14,6 +14,7 @@ import ProcessBuilder from "@/pages/ProcessBuilder";
 import AgenticEngine from "@/pages/AgenticEngine";
 import ExpertMarketplace from "@/pages/ExpertMarketplace";
 import ModelEvaluations from "@/pages/ModelEvaluations";
+import WealthManagement from "@/pages/WealthManagement";
 import Login from "@/pages/Login";
 import NotFound from "@/pages/not-found";
 
@@ -132,6 +133,7 @@ function Router() {
             <Route path="/agentic-engine" component={AgenticEngine} />
             <Route path="/expert-marketplace" component={ExpertMarketplace} />
             <Route path="/model-evaluations" component={ModelEvaluations} />
+            <Route path="/wealth-management" component={WealthManagement} />
             <Route component={NotFound} />
           </Switch>
         </div>

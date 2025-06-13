@@ -1,12 +1,18 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { 
-  Play, 
+  TrendingUp, 
   Database, 
   Brain, 
   Clock,
   Plus,
   CheckCircle,
-  Bot
+  Bot,
+  DollarSign,
+  Users,
+  FileText,
+  BarChart3,
+  Briefcase,
+  Target
 } from "lucide-react";
 import { 
   StatusBadge, 
@@ -19,37 +25,37 @@ import {
 export default function Platform() {
   const statsCards = [
     {
-      title: "Active Processes",
-      value: "24",
-      change: "+12%",
-      changeText: "from last week",
-      icon: Play,
+      title: "Portfolio Value",
+      value: "$2.4B",
+      change: "+8.2%",
+      changeText: "from last quarter",
+      icon: DollarSign,
+      iconBg: "bg-emerald-100",
+      iconColor: "text-emerald-600"
+    },
+    {
+      title: "Active Managers", 
+      value: "47",
+      change: "+3",
+      changeText: "new this quarter",
+      icon: Users,
       iconBg: "bg-blue-100",
       iconColor: "text-blue-600"
     },
     {
-      title: "Data Sources", 
-      value: "156",
-      change: "+8%",
-      changeText: "from last week",
-      icon: Database,
-      iconBg: "bg-green-100",
-      iconColor: "text-green-600"
-    },
-    {
-      title: "AI Models",
-      value: "43", 
-      change: "+24%",
-      changeText: "from last week",
-      icon: Brain,
+      title: "Document Processing",
+      value: "1,248", 
+      change: "+12%",
+      changeText: "reports processed",
+      icon: FileText,
       iconBg: "bg-purple-100",
       iconColor: "text-purple-600"
     },
     {
-      title: "Uptime",
+      title: "System Uptime",
       value: "99.9%",
       change: "+0.1%", 
-      changeText: "from last week",
+      changeText: "from last month",
       icon: Clock,
       iconBg: "bg-orange-100",
       iconColor: "text-orange-600"
@@ -58,32 +64,32 @@ export default function Platform() {
 
   const recentActivities = [
     {
-      title: "New data source connected",
-      subtitle: 'PostgreSQL database "analytics_prod" • 2 hours ago',
-      icon: Plus,
-      iconBg: "bg-blue-100",
-      iconColor: "text-blue-600"
+      title: "Manager report processed",
+      subtitle: 'Sequoia Capital Q4 2024 update • 2 hours ago',
+      icon: FileText,
+      iconBg: "bg-purple-100",
+      iconColor: "text-purple-600"
     },
     {
-      title: "Process execution completed",
-      subtitle: "Customer segmentation pipeline • 4 hours ago",
+      title: "Portfolio analysis completed",
+      subtitle: "Private equity performance review • 4 hours ago",
       icon: CheckCircle,
       iconBg: "bg-green-100", 
       iconColor: "text-green-600"
     },
     {
-      title: "AI model deployed",
-      subtitle: "Recommendation engine v2.1 • 6 hours ago",
-      icon: Bot,
-      iconBg: "bg-purple-100",
-      iconColor: "text-purple-600"
+      title: "New manager onboarded",
+      subtitle: "Bain Capital Ventures • 6 hours ago",
+      icon: Plus,
+      iconBg: "bg-blue-100",
+      iconColor: "text-blue-600"
     }
   ];
 
   const systemMetrics = [
-    { name: "API Response Time", value: "127ms", percentage: 85, color: "bg-green-600" },
-    { name: "Memory Usage", value: "67%", percentage: 67, color: "bg-yellow-500" },
-    { name: "Storage Used", value: "43%", percentage: 43, color: "bg-blue-600" }
+    { name: "Document Processing", value: "95%", percentage: 95, color: "bg-green-600" },
+    { name: "Data Extraction Accuracy", value: "98.7%", percentage: 98, color: "bg-green-600" },
+    { name: "Query Response Time", value: "180ms", percentage: 85, color: "bg-blue-600" }
   ];
 
   return (
@@ -185,69 +191,118 @@ export default function Platform() {
           </Card>
         </div>
 
-        {/* Color Guidelines Demonstration */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          {/* System Health Dashboard */}
+        {/* Investment Operations Dashboard */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+          {/* Data Pipeline Health */}
           <Card className="bg-white border-border">
             <div className="px-6 py-4 border-b border-border">
-              <h3 className="text-lg font-semibold text-foreground">System Health</h3>
+              <h3 className="text-lg font-semibold text-foreground">Data Pipeline Health</h3>
             </div>
             <CardContent className="p-6 space-y-4">
-              <HealthIndicator status="healthy" label="Database Connection" />
-              <HealthIndicator status="warning" label="API Gateway" />
-              <HealthIndicator status="critical" label="Cache Service" />
-              <HealthIndicator status="healthy" label="Message Queue" />
+              <HealthIndicator status="healthy" label="Document OCR Service" />
+              <HealthIndicator status="healthy" label="Data Extraction Engine" />
+              <HealthIndicator status="warning" label="Manager API Gateway" />
+              <HealthIndicator status="healthy" label="Portfolio Database" />
             </CardContent>
           </Card>
 
-          {/* Task Status Overview */}
+          {/* Processing Status */}
           <Card className="bg-white border-border">
             <div className="px-6 py-4 border-b border-border">
-              <h3 className="text-lg font-semibold text-foreground">Task Status</h3>
+              <h3 className="text-lg font-semibold text-foreground">Processing Status</h3>
             </div>
             <CardContent className="p-6 space-y-3">
-              <TaskStatus status="completed" label="Data Processing Complete" />
-              <TaskStatus status="in-progress" label="Model Training Running" />
-              <TaskStatus status="failed" label="Export Job Failed" />
-              <TaskStatus status="pending" label="Backup Scheduled" />
+              <TaskStatus status="completed" label="Q4 Manager Reports" />
+              <TaskStatus status="in-progress" label="PE Performance Analysis" />
+              <TaskStatus status="completed" label="ESG Compliance Review" />
+              <TaskStatus status="pending" label="Board Report Generation" />
+            </CardContent>
+          </Card>
+
+          {/* Top Performing Managers */}
+          <Card className="bg-white border-border">
+            <div className="px-6 py-4 border-b border-border">
+              <h3 className="text-lg font-semibold text-foreground">Top Performers (YTD)</h3>
+            </div>
+            <CardContent className="p-6 space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium">Sequoia Capital</span>
+                <span className="text-green-600 font-semibold">+24.7%</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium">Bain Capital</span>
+                <span className="text-green-600 font-semibold">+18.3%</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium">General Atlantic</span>
+                <span className="text-green-600 font-semibold">+16.9%</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-sm font-medium">TPG Capital</span>
+                <span className="text-green-600 font-semibold">+15.2%</span>
+              </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Metrics with Semantic Colors */}
+        {/* Portfolio Performance Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-          <MetricCard title="Success Rate" value="98.5%" change={2.3} trend="up" />
-          <MetricCard title="Error Rate" value="1.2%" change={-0.8} trend="down" />
-          <MetricCard title="Response Time" value="245ms" change={15} trend="neutral" />
-          <MetricCard title="Throughput" value="1.2K/min" change={-5.2} trend="down" />
+          <MetricCard title="Portfolio IRR" value="18.4%" change={2.1} trend="up" />
+          <MetricCard title="Document Accuracy" value="98.7%" change={0.3} trend="up" />
+          <MetricCard title="Processing Speed" value="3.2min" change={-15} trend="down" />
+          <MetricCard title="ESG Compliance" value="94%" change={1.8} trend="up" />
         </div>
 
-        {/* Status Alerts */}
+        {/* Investment Alerts */}
         <div className="space-y-4 mt-6">
-          <StatusAlert status="success" title="Deployment Successful">
-            Version 2.1.0 has been successfully deployed to production environment.
+          <StatusAlert status="success" title="Manager Report Processing Complete">
+            Q4 2024 reports from 47 managers successfully processed and analyzed.
           </StatusAlert>
           
-          <StatusAlert status="warning" title="High Memory Usage">
-            Memory usage is at 85%. Consider scaling up resources if this persists.
+          <StatusAlert status="warning" title="ESG Compliance Review Required">
+            3 portfolio companies require updated ESG documentation for regulatory compliance.
           </StatusAlert>
           
-          <StatusAlert status="error" title="Critical Error">
-            Database connection failed. Immediate attention required.
+          <StatusAlert status="info" title="New Investment Opportunity">
+            AI-powered biotech startup identified matching Harvard's strategic criteria.
           </StatusAlert>
         </div>
 
-        {/* Status Badges Examples */}
+        {/* Asset Class Distribution */}
         <Card className="bg-white border-border mt-6">
           <div className="px-6 py-4 border-b border-border">
-            <h3 className="text-lg font-semibold text-foreground">Component Status</h3>
+            <h3 className="text-lg font-semibold text-foreground">Asset Class Distribution</h3>
           </div>
           <CardContent className="p-6">
-            <div className="flex flex-wrap gap-3">
-              <StatusBadge status="success">Online</StatusBadge>
-              <StatusBadge status="warning">Degraded</StatusBadge>
-              <StatusBadge status="error">Offline</StatusBadge>
-              <StatusBadge status="info">Maintenance</StatusBadge>
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm font-medium">Private Equity</span>
+                </div>
+                <span className="text-sm font-semibold">42%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span className="text-sm font-medium">Venture Capital</span>
+                </div>
+                <span className="text-sm font-semibold">28%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+                  <span className="text-sm font-medium">Real Estate</span>
+                </div>
+                <span className="text-sm font-semibold">18%</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  <span className="text-sm font-medium">Hedge Funds</span>
+                </div>
+                <span className="text-sm font-semibold">12%</span>
+              </div>
             </div>
           </CardContent>
         </Card>
