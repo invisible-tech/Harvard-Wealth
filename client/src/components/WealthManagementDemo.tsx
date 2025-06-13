@@ -21,7 +21,12 @@ import {
   ChevronDown,
   ChevronRight,
   History,
-  Filter
+  Filter,
+  Mail,
+  Database,
+  Link,
+  Shield,
+  Clock
 } from "lucide-react";
 import { useState } from "react";
 
@@ -29,7 +34,17 @@ export default function WealthManagementDemo() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [queryResult, setQueryResult] = useState<{result: string; data: string[]} | null>(null);
+  const [queryResult, setQueryResult] = useState<{
+    result: string; 
+    data: string[];
+    sources: Array<{
+      type: 'email' | 'pdf' | 'database' | 'report' | 'api';
+      name: string;
+      timestamp: string;
+      confidence: number;
+      icon: any;
+    }>;
+  } | null>(null);
   const [showIframe, setShowIframe] = useState(false);
   const [iframeUrl, setIframeUrl] = useState("");
   const [showPromptLibrary, setShowPromptLibrary] = useState(false);
@@ -185,6 +200,10 @@ export default function WealthManagementDemo() {
           "• Cross-referencing performance data",
           "• Generating insights based on your criteria",
           "• Results compiled from Harvard's portfolio database"
+        ],
+        sources: [
+          { type: 'database', name: 'Harvard Portfolio Database', timestamp: '2024-12-15 14:30', confidence: 95, icon: Database },
+          { type: 'report', name: 'Q4 Portfolio Summary', timestamp: '2024-12-10 09:15', confidence: 92, icon: FileText }
         ]
       };
 
@@ -200,6 +219,12 @@ export default function WealthManagementDemo() {
             "• General Atlantic: 16.9% IRR (3-year avg)",
             "• TPG Capital: 15.2% IRR (3-year avg)",
             "• Additional 4 managers with IRR between 15.1-17.8%"
+          ],
+          sources: [
+            { type: 'pdf', name: 'Sequoia_Q4_2024_Report.pdf', timestamp: '2024-12-15 10:30', confidence: 98, icon: FileText },
+            { type: 'email', name: 'Michael Chen <mchen@baincapital.com>', timestamp: '2024-12-12 16:45', confidence: 94, icon: Mail },
+            { type: 'pdf', name: 'General_Atlantic_Performance_Review.pdf', timestamp: '2024-12-08 14:20', confidence: 96, icon: FileText },
+            { type: 'database', name: 'Harvard Performance Analytics DB', timestamp: '2024-12-15 08:00', confidence: 99, icon: Database }
           ]
         };
       } else if (query.includes("esg") || query.includes("risk") || query.includes("compliance")) {
@@ -211,6 +236,12 @@ export default function WealthManagementDemo() {
             "• 12 new sustainable investment initiatives launched",
             "• Enhanced due diligence on 5 emerging market investments",
             "• Overall ESG portfolio score: 4.2/5.0"
+          ],
+          sources: [
+            { type: 'report', name: 'ESG_Compliance_Q4_2024.pdf', timestamp: '2024-12-14 11:15', confidence: 97, icon: FileText },
+            { type: 'email', name: 'Sarah Williams <swilliams@sustainalytics.com>', timestamp: '2024-12-13 09:30', confidence: 93, icon: Mail },
+            { type: 'api', name: 'MSCI ESG Research API', timestamp: '2024-12-15 07:45', confidence: 96, icon: Link },
+            { type: 'pdf', name: 'Carbon_Footprint_Assessment_2024.pdf', timestamp: '2024-12-11 13:20', confidence: 91, icon: FileText }
           ]
         };
       } else if (query.includes("biotech") || query.includes("pharma") || query.includes("drug")) {
@@ -222,6 +253,12 @@ export default function WealthManagementDemo() {
             "• 10x Genomics: Single-cell analysis tools (Projected 19% IRR)",
             "• Recursion Pharmaceuticals: AI drug discovery (Projected 25% IRR)",
             "• Portfolio allocation recommendation: 15-20% increase in biotech exposure"
+          ],
+          sources: [
+            { type: 'email', name: 'Dr. James Liu <jliu@modernatx.com>', timestamp: '2024-12-14 15:22', confidence: 89, icon: Mail },
+            { type: 'pdf', name: 'Biotech_Sector_Analysis_2024.pdf', timestamp: '2024-12-12 10:40', confidence: 95, icon: FileText },
+            { type: 'api', name: 'PitchBook Private Market Data', timestamp: '2024-12-15 06:30', confidence: 92, icon: Link },
+            { type: 'report', name: 'Healthcare Innovation Pipeline Report', timestamp: '2024-12-09 16:10', confidence: 94, icon: FileText }
           ]
         };
       } else if (query.includes("distribution") || query.includes("payout") || query.includes("return")) {
@@ -233,6 +270,12 @@ export default function WealthManagementDemo() {
             "• General Atlantic X: $203M distribution (Mar 10)",
             "• TPG Growth III: $156M distribution (Mar 22)",
             "• Total expected distributions: $573M"
+          ],
+          sources: [
+            { type: 'email' as const, name: 'David Park <dpark@sequoiacap.com>', timestamp: '2024-12-14 12:15', confidence: 98, icon: Mail },
+            { type: 'pdf' as const, name: 'Distribution_Schedule_Q1_2025.pdf', timestamp: '2024-12-13 09:45', confidence: 96, icon: FileText },
+            { type: 'database' as const, name: 'Capital Calls & Distributions DB', timestamp: '2024-12-15 08:15', confidence: 99, icon: Database },
+            { type: 'email' as const, name: 'Lisa Zhang <lzhang@tpg.com>', timestamp: '2024-12-12 14:30', confidence: 94, icon: Mail }
           ]
         };
       }
@@ -556,6 +599,48 @@ export default function WealthManagementDemo() {
                     {queryResult.data.map((item, index) => (
                       <div key={index} className="text-sm text-green-800">{item}</div>
                     ))}
+                  </div>
+                  
+                  {/* Source Information */}
+                  <div className="mt-4 pt-3 border-t border-green-200">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Shield className="h-4 w-4 text-green-700" />
+                      <span className="text-sm font-medium text-green-700">Data Sources & Lineage</span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {queryResult.sources.map((source, index) => {
+                        const IconComponent = source.icon;
+                        const getSourceColor = (type: string) => {
+                          switch (type) {
+                            case 'email': return 'text-blue-600 bg-blue-50 border-blue-200';
+                            case 'pdf': return 'text-red-600 bg-red-50 border-red-200';
+                            case 'database': return 'text-purple-600 bg-purple-50 border-purple-200';
+                            case 'report': return 'text-orange-600 bg-orange-50 border-orange-200';
+                            case 'api': return 'text-green-600 bg-green-50 border-green-200';
+                            default: return 'text-gray-600 bg-gray-50 border-gray-200';
+                          }
+                        };
+                        
+                        return (
+                          <div 
+                            key={index} 
+                            className={`p-2 rounded border text-xs ${getSourceColor(source.type)}`}
+                          >
+                            <div className="flex items-start gap-2">
+                              <IconComponent className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                              <div className="flex-1 min-w-0">
+                                <div className="font-medium truncate">{source.name}</div>
+                                <div className="flex items-center gap-2 mt-1 text-xs opacity-75">
+                                  <Clock className="h-2 w-2" />
+                                  <span>{source.timestamp}</span>
+                                  <span className="ml-auto">{source.confidence}% confidence</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
