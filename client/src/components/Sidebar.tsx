@@ -6,12 +6,14 @@ import {
   ProcessIcon, 
   AgentIcon, 
   ExpertIcon, 
-  ModelIcon 
+  ModelIcon,
+  WealthIcon 
 } from "@/components/icons/PlatformIcon";
 import invisiblePlatformLogo from "@/assets/invisible-platform-logo.svg";
 
 const navigationItems = [
   { path: "/platform", label: "Platform", icon: PlatformIcon },
+  { path: "/wealth-management", label: "Harvard Demo", icon: WealthIcon, highlight: true },
   { path: "/data-environment", label: "Data Environment", icon: DataIcon },
   { path: "/process-builder", label: "Process Builder", icon: ProcessIcon },
   { path: "/agentic-engine", label: "Agentic Engine", icon: AgentIcon },
@@ -54,9 +56,14 @@ export default function Sidebar() {
                     isActive(item.path) 
                       ? 'active-nav' 
                       : 'text-gray-300'
-                  }`}>
+                  } ${item.highlight ? 'relative' : ''}`}>
                     <Icon className="w-5 h-5 mr-3" />
                     <span className="font-medium">{item.label}</span>
+                    {item.highlight && (
+                      <span className="ml-auto px-2 py-1 text-xs bg-blue-600 text-white rounded-full">
+                        NEW
+                      </span>
+                    )}
                   </Link>
                 </li>
               );
