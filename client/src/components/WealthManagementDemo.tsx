@@ -149,15 +149,126 @@ export default function WealthManagementDemo() {
   };
 
   const handleViewFullReport = (documentId: string) => {
+    // Use iframe-friendly URLs that don't have authentication restrictions
     const reportUrls = {
-      "1": "https://demos.inv.tech/acrisure", // Using existing demo environment
-      "2": "https://builder-next-gen-insurance-generic-1-vinceguan1.replit.app/dashboard", // Using existing process builder
-      "3": "https://demos.inv.tech/acrisure"
+      "1": "https://www.example.com/sample-report", // Sample report URL
+      "2": "https://www.example.com/manager-update", // Manager update URL  
+      "3": "https://www.example.com/portfolio-review" // Portfolio review URL
     };
     
-    const url = reportUrls[documentId as keyof typeof reportUrls] || "https://demos.inv.tech/acrisure";
+    // For demo purposes, create a simple HTML report
+    const reportContent = generateSampleReport(documentId);
+    const blob = new Blob([reportContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    
     setIframeUrl(url);
     setShowIframe(true);
+  };
+
+  const generateSampleReport = (documentId: string) => {
+    const doc = recentDocuments.find(d => d.id === documentId);
+    if (!doc) return '';
+
+    return `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>${doc.title}</title>
+        <style>
+          body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            line-height: 1.6; 
+            background: #f8f9fa;
+          }
+          .header { 
+            background: #1e40af; 
+            color: white; 
+            padding: 20px; 
+            text-align: center; 
+            border-radius: 8px; 
+            margin-bottom: 20px;
+          }
+          .metrics { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 15px; 
+            margin: 20px 0; 
+          }
+          .metric-card { 
+            background: white; 
+            padding: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+          }
+          .metric-value { 
+            font-size: 24px; 
+            font-weight: bold; 
+            color: #059669; 
+          }
+          .section { 
+            background: white; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+          }
+          .insights li { 
+            margin: 8px 0; 
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>${doc.title}</h1>
+          <p>Harvard Wealth Management Portfolio Analysis</p>
+          <p>Date: ${doc.date}</p>
+        </div>
+        
+        <div class="metrics">
+          <div class="metric-card">
+            <div class="metric-value">${doc.irr}</div>
+            <div>Internal Rate of Return</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${doc.aum}</div>
+            <div>Assets Under Management</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${doc.status}</div>
+            <div>Processing Status</div>
+          </div>
+        </div>
+        
+        <div class="section">
+          <h2>Executive Summary</h2>
+          <p>This quarterly report provides a comprehensive analysis of ${doc.title.split(' ')[0]} ${doc.title.split(' ')[1]}'s portfolio performance, strategic initiatives, and market outlook for the current period.</p>
+        </div>
+        
+        <div class="section">
+          <h2>Key Performance Insights</h2>
+          <ul class="insights">
+            ${doc.keyInsights.map(insight => `<li>${insight}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="section">
+          <h2>Portfolio Composition</h2>
+          <p>The fund maintains a diversified portfolio across multiple sectors with strategic focus on high-growth opportunities in technology, healthcare, and sustainable investments.</p>
+        </div>
+        
+        <div class="section">
+          <h2>Risk Assessment</h2>
+          <p>Current risk metrics indicate a well-balanced portfolio with appropriate diversification and strong ESG compliance ratings across all major holdings.</p>
+        </div>
+        
+        <div class="section">
+          <h2>Forward-Looking Outlook</h2>
+          <p>Based on current market conditions and portfolio performance, we maintain a positive outlook for the next quarter with continued focus on sustainable growth and strategic value creation.</p>
+        </div>
+      </body>
+      </html>
+    `;
   };
 
   return (
@@ -416,7 +527,14 @@ export default function WealthManagementDemo() {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setShowIframe(false)}
+                onClick={() => {
+                  setShowIframe(false);
+                  // Clean up blob URL to prevent memory leaks
+                  if (iframeUrl.startsWith('blob:')) {
+                    URL.revokeObjectURL(iframeUrl);
+                  }
+                  setIframeUrl("");
+                }}
                 className="flex items-center gap-1"
               >
                 <X className="h-4 w-4" />
