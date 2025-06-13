@@ -81,52 +81,9 @@ export default function WealthManagementDemo() {
     setIsProcessing(true);
     setQueryResult(null);
     
-    // Simulate AI model processing with realistic responses
+    // Create a more dynamic query handler that processes the actual input
     setTimeout(() => {
-      const responses = {
-        "Show Harvard managers outperforming 15% IRR over the past 3 years": {
-          result: "Found 8 managers exceeding 15% IRR threshold:",
-          data: [
-            "• Sequoia Capital: 24.7% IRR (3-year avg)",
-            "• Bain Capital Ventures: 18.3% IRR (3-year avg)", 
-            "• General Atlantic: 16.9% IRR (3-year avg)",
-            "• TPG Capital: 15.2% IRR (3-year avg)",
-            "• Additional 4 managers with IRR between 15.1-17.8%"
-          ]
-        },
-        "Summarize private asset ESG risk commentary from last quarter": {
-          result: "ESG Risk Analysis Summary (Q4 2024):",
-          data: [
-            "• 94% of portfolio companies maintain ESG compliance ratings above B+",
-            "• 3 companies flagged for carbon footprint review",
-            "• 12 new sustainable investment initiatives launched",
-            "• Enhanced due diligence on 5 emerging market investments",
-            "• Overall ESG portfolio score: 4.2/5.0"
-          ]
-        },
-        "Which biotech investments have the highest return potential?": {
-          result: "Top Biotech Investment Opportunities:",
-          data: [
-            "• Moderna Inc.: AI-driven vaccine development (Projected 28% IRR)",
-            "• Ginkgo Bioworks: Synthetic biology platform (Projected 22% IRR)",
-            "• 10x Genomics: Single-cell analysis tools (Projected 19% IRR)",
-            "• Recursion Pharmaceuticals: AI drug discovery (Projected 25% IRR)",
-            "• Portfolio allocation recommendation: 15-20% increase in biotech exposure"
-          ]
-        },
-        "List all managers with upcoming distribution schedules": {
-          result: "Upcoming Distributions (Next 90 days):",
-          data: [
-            "• Sequoia Capital Fund XIV: $125M distribution (Feb 15)",
-            "• Bain Capital Ventures IV: $89M distribution (Feb 28)",
-            "• General Atlantic X: $203M distribution (Mar 10)",
-            "• TPG Growth III: $156M distribution (Mar 22)",
-            "• Total expected distributions: $573M"
-          ]
-        }
-      };
-
-      const response = responses[searchQuery as keyof typeof responses] || {
+      let response = {
         result: "AI Analysis Complete - Processing your investment query...",
         data: [
           "• Analyzing 47 active investment managers",
@@ -137,6 +94,55 @@ export default function WealthManagementDemo() {
         ]
       };
 
+      // Enhanced query matching for more dynamic responses
+      const query = searchQuery.toLowerCase();
+      
+      if (query.includes("irr") || query.includes("performance") || query.includes("outperform")) {
+        response = {
+          result: "Found 8 managers exceeding 15% IRR threshold:",
+          data: [
+            "• Sequoia Capital: 24.7% IRR (3-year avg)",
+            "• Bain Capital Ventures: 18.3% IRR (3-year avg)", 
+            "• General Atlantic: 16.9% IRR (3-year avg)",
+            "• TPG Capital: 15.2% IRR (3-year avg)",
+            "• Additional 4 managers with IRR between 15.1-17.8%"
+          ]
+        };
+      } else if (query.includes("esg") || query.includes("risk") || query.includes("compliance")) {
+        response = {
+          result: "ESG Risk Analysis Summary (Q4 2024):",
+          data: [
+            "• 94% of portfolio companies maintain ESG compliance ratings above B+",
+            "• 3 companies flagged for carbon footprint review",
+            "• 12 new sustainable investment initiatives launched",
+            "• Enhanced due diligence on 5 emerging market investments",
+            "• Overall ESG portfolio score: 4.2/5.0"
+          ]
+        };
+      } else if (query.includes("biotech") || query.includes("pharma") || query.includes("drug")) {
+        response = {
+          result: "Top Biotech Investment Opportunities:",
+          data: [
+            "• Moderna Inc.: AI-driven vaccine development (Projected 28% IRR)",
+            "• Ginkgo Bioworks: Synthetic biology platform (Projected 22% IRR)",
+            "• 10x Genomics: Single-cell analysis tools (Projected 19% IRR)",
+            "• Recursion Pharmaceuticals: AI drug discovery (Projected 25% IRR)",
+            "• Portfolio allocation recommendation: 15-20% increase in biotech exposure"
+          ]
+        };
+      } else if (query.includes("distribution") || query.includes("payout") || query.includes("return")) {
+        response = {
+          result: "Upcoming Distributions (Next 90 days):",
+          data: [
+            "• Sequoia Capital Fund XIV: $125M distribution (Feb 15)",
+            "• Bain Capital Ventures IV: $89M distribution (Feb 28)",
+            "• General Atlantic X: $203M distribution (Mar 10)",
+            "• TPG Growth III: $156M distribution (Mar 22)",
+            "• Total expected distributions: $573M"
+          ]
+        };
+      }
+
       setQueryResult(response);
       setIsProcessing(false);
     }, 2500);
@@ -144,12 +150,12 @@ export default function WealthManagementDemo() {
 
   const handleViewFullReport = (documentId: string) => {
     const reportUrls = {
-      "1": "https://docs.google.com/document/d/1example-sequoia-report/edit?usp=sharing",
-      "2": "https://docs.google.com/document/d/1example-bain-report/edit?usp=sharing", 
-      "3": "https://docs.google.com/document/d/1example-general-atlantic-report/edit?usp=sharing"
+      "1": "https://demos.inv.tech/acrisure", // Using existing demo environment
+      "2": "https://builder-next-gen-insurance-generic-1-vinceguan1.replit.app/dashboard", // Using existing process builder
+      "3": "https://demos.inv.tech/acrisure"
     };
     
-    const url = reportUrls[documentId as keyof typeof reportUrls] || "https://demos.inv.tech/harvard-demo";
+    const url = reportUrls[documentId as keyof typeof reportUrls] || "https://demos.inv.tech/acrisure";
     setIframeUrl(url);
     setShowIframe(true);
   };
