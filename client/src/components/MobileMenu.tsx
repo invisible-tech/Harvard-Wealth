@@ -80,6 +80,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   >
                     <Icon className="w-5 h-5 mr-3" />
                     <span className="font-medium">{item.label}</span>
+                    {item.highlight && (
+                      <span className="ml-auto px-2 py-1 text-xs bg-blue-600 text-white rounded-full">
+                        NEW
+                      </span>
+                    )}
                   </Link>
                 </li>
               );

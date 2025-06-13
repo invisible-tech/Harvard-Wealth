@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Invisible Platform is a comprehensive data and AI management system built with a modern full-stack architecture. It provides a unified interface for managing data environments, building processes, operating AI agents, connecting with experts, and evaluating AI models. The platform is designed to streamline complex data workflows and AI operations through an intuitive web interface.
+The Invisible Platform is a comprehensive data and AI management system built with a modern full-stack architecture, featuring specialized capabilities for wealth management and investment portfolio operations. It provides a unified interface for managing data environments, building processes, operating AI agents, connecting with experts, and evaluating AI models. The platform is designed to streamline complex data workflows and AI operations through an intuitive web interface, with particular emphasis on document processing, data extraction, and investment analytics for institutional clients like Harvard Wealth Management.
 
 ## System Architecture
 
@@ -29,29 +29,39 @@ The Invisible Platform is a comprehensive data and AI management system built wi
 ## Key Components
 
 ### 1. Platform Dashboard
-Central hub displaying system overview, active processes, data sources, AI models, and system uptime metrics.
+Central hub displaying system overview with wealth management focus, featuring portfolio value metrics, active investment managers, document processing statistics, and system health monitoring tailored for institutional investment operations.
 
-### 2. Data Environment
+### 2. Harvard Wealth Management Demo
+Specialized demonstration interface showcasing:
+- Natural language query processing for investment analysis
+- Automated document extraction from manager reports
+- Portfolio performance visualization and metrics
+- Real-time processing of unstructured investment documents
+- Manager performance tracking and comparison
+- ESG compliance monitoring and reporting
+- Asset class distribution analytics
+
+### 3. Data Environment
 Full-screen iframe integration with external data dashboard (https://demos.inv.tech/acrisure) for comprehensive data management.
 
-### 3. Process Builder
+### 4. Process Builder
 Full-screen iframe integration with external process builder (https://builder-next-gen-insurance-generic-1-vinceguan1.replit.app/dashboard) for workflow design and orchestration.
 
-### 4. Agentic Engine
+### 5. Agentic Engine
 Multi-tabbed interface for managing AI agent teams, including:
 - Engine overview and team management
 - Agent performance tracking
 - Task assignment and monitoring
 - Success rate analytics
 
-### 5. Expert Marketplace
+### 6. Expert Marketplace
 Human-in-the-loop system featuring:
 - Task queue management
 - Expert assignment and tracking
 - Performance metrics and leaderboards
 - Payment processing integration
 
-### 6. Model Evaluations
+### 7. Model Evaluations
 Comprehensive AI model management system with:
 - Training dataset management
 - Model versioning and deployment
@@ -115,7 +125,14 @@ Comprehensive AI model management system with:
 - **Start Command**: `npm run start`
 
 ## Changelog
-- June 13, 2025. Initial setup
+- June 13, 2025: Initial setup
+- June 13, 2025: Integrated Harvard Wealth Management demo showcasing:
+  - Portfolio-focused dashboard with investment metrics
+  - Natural language query interface for investment analysis
+  - Document processing capabilities for manager reports
+  - Real-time data extraction from unstructured documents
+  - Manager performance tracking and ESG compliance monitoring
+  - Interactive demonstration of ontology-driven data visualization
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
