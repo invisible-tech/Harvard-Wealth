@@ -34,12 +34,15 @@ Central hub displaying system overview with wealth management focus, featuring p
 ### 2. Harvard Wealth Management Demo
 Specialized demonstration interface showcasing:
 - Natural language query processing for investment analysis
+- Interactive prompt library with categorized wealth management queries
+- Query history tracking for repeated analysis patterns
 - Automated document extraction from manager reports
 - Portfolio performance visualization and metrics
 - Real-time processing of unstructured investment documents
 - Manager performance tracking and comparison
 - ESG compliance monitoring and reporting
 - Asset class distribution analytics
+- Dynamic iframe reports with custom HTML generation
 
 ### 3. Data Environment
 Full-screen iframe integration with external data dashboard (https://demos.inv.tech/acrisure) for comprehensive data management.
@@ -133,6 +136,13 @@ Comprehensive AI model management system with:
   - Real-time data extraction from unstructured documents
   - Manager performance tracking and ESG compliance monitoring
   - Interactive demonstration of ontology-driven data visualization
+- June 13, 2025: Enhanced Natural Language Query Interface with:
+  - Comprehensive prompt library organized by wealth management categories
+  - 6 specialized categories: Performance Analysis, Risk Management, Due Diligence, Portfolio Construction, Cash Flow Management, Compliance & Reporting
+  - 42 authentic investment prompts targeting Harvard's operational needs
+  - Query history tracking with recent query recall functionality
+  - Interactive AI processing visualization with real-time feedback
+  - Custom HTML report generation for iframe viewing without authentication errors
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

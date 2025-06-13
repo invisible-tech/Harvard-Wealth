@@ -16,7 +16,12 @@ import {
   Bot,
   Loader2,
   ExternalLink,
-  X
+  X,
+  BookOpen,
+  ChevronDown,
+  ChevronRight,
+  History,
+  Filter
 } from "lucide-react";
 import { useState } from "react";
 
@@ -27,6 +32,9 @@ export default function WealthManagementDemo() {
   const [queryResult, setQueryResult] = useState<{result: string; data: string[]} | null>(null);
   const [showIframe, setShowIframe] = useState(false);
   const [iframeUrl, setIframeUrl] = useState("");
+  const [showPromptLibrary, setShowPromptLibrary] = useState(false);
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
+  const [queryHistory, setQueryHistory] = useState<string[]>([]);
 
   const recentDocuments = [
     {
@@ -61,9 +69,90 @@ export default function WealthManagementDemo() {
     }
   ];
 
+  const promptLibrary = {
+    "Performance Analysis": {
+      icon: TrendingUp,
+      color: "text-green-600",
+      prompts: [
+        "Show Harvard managers outperforming 15% IRR over the past 3 years",
+        "Compare net IRR performance across private equity vintages 2019-2024",
+        "Identify top quartile performers in our venture capital portfolio",
+        "Analyze TVPI multiple progression for Fund VIII investments",
+        "Which managers have consistently delivered alpha above benchmark?",
+        "Show correlation between management fees and net performance",
+        "Rank our real estate managers by risk-adjusted returns"
+      ]
+    },
+    "Risk Management": {
+      icon: Filter,
+      color: "text-red-600", 
+      prompts: [
+        "Summarize private asset ESG risk commentary from last quarter",
+        "Identify portfolio companies with elevated credit risk scores",
+        "Show concentration risk across sectors and geographies",
+        "Analyze liquidity timeline for our illiquid investments",
+        "Which investments have missed their original exit timelines?",
+        "Review counterparty risk exposure across prime brokers",
+        "Summarize key person risk events in the past 12 months"
+      ]
+    },
+    "Due Diligence": {
+      icon: Search,
+      color: "text-blue-600",
+      prompts: [
+        "Extract key terms from the latest Blackstone fund documentation",
+        "Compare fee structures across similar vintage private equity funds",
+        "Summarize investment committee concerns from recent proposals",
+        "Analyze reference calls feedback for prospective managers",
+        "Review operational due diligence findings for Fund XII",
+        "What are the key differentiators in Apollo's new strategy?",
+        "Compile background check results for new investment partners"
+      ]
+    },
+    "Portfolio Construction": {
+      icon: BarChart3,
+      color: "text-purple-600",
+      prompts: [
+        "Which biotech investments have the highest return potential?",
+        "Recommend optimal allocation across alternative asset classes",
+        "Identify gaps in our emerging markets exposure",
+        "Suggest rebalancing strategy for overweight technology positions",
+        "Analyze portfolio diversification across investment styles",
+        "Which sectors offer the best risk-return opportunity currently?",
+        "Review our small-cap equity manager lineup effectiveness"
+      ]
+    },
+    "Cash Flow Management": {
+      icon: DollarSign,
+      color: "text-emerald-600",
+      prompts: [
+        "List all managers with upcoming distribution schedules",
+        "Project capital call requirements for the next 24 months",
+        "Show net cash flow timing across our private investments",
+        "Which funds are approaching their investment periods?",
+        "Analyze distribution yield trends by asset class",
+        "Calculate unfunded commitment exposure by vintage year",
+        "Review liquidity requirements for upcoming board commitments"
+      ]
+    },
+    "Compliance & Reporting": {
+      icon: FileText,
+      color: "text-orange-600",
+      prompts: [
+        "Generate quarterly board reporting package highlights",
+        "Summarize regulatory compliance issues requiring attention",
+        "Extract ILPA reporting requirements from partnership agreements",
+        "Review transparency metrics across our manager relationships",
+        "Compile environmental impact data for sustainability report",
+        "What investments require updated tax documentation?",
+        "Summarize fiduciary compliance status across all mandates"
+      ]
+    }
+  };
+
   const queryExamples = [
     "Show Harvard managers outperforming 15% IRR over the past 3 years",
-    "Summarize private asset ESG risk commentary from last quarter",
+    "Summarize private asset ESG risk commentary from last quarter", 
     "Which biotech investments have the highest return potential?",
     "List all managers with upcoming distribution schedules"
   ];
@@ -80,6 +169,11 @@ export default function WealthManagementDemo() {
     
     setIsProcessing(true);
     setQueryResult(null);
+    
+    // Add to query history if not already present
+    if (!queryHistory.includes(searchQuery)) {
+      setQueryHistory(prev => [searchQuery, ...prev.slice(0, 9)]); // Keep last 10 queries
+    }
     
     // Create a more dynamic query handler that processes the actual input
     setTimeout(() => {
@@ -319,6 +413,14 @@ export default function WealthManagementDemo() {
               onKeyPress={(e) => e.key === 'Enter' && handleQuerySubmit()}
               disabled={isProcessing}
             />
+            <Button 
+              onClick={() => setShowPromptLibrary(!showPromptLibrary)}
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <BookOpen className="h-4 w-4" />
+              Library
+            </Button>
             <Button onClick={handleQuerySubmit} disabled={isProcessing || !searchQuery.trim()}>
               {isProcessing ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
@@ -327,6 +429,99 @@ export default function WealthManagementDemo() {
               )}
             </Button>
           </div>
+
+          {/* Prompt Library Panel */}
+          {showPromptLibrary && (
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-4">
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold text-foreground flex items-center gap-2">
+                  <BookOpen className="h-4 w-4" />
+                  Wealth Management Prompt Library
+                </h4>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowPromptLibrary(false)}
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+              
+              {/* Query History */}
+              {queryHistory.length > 0 && (
+                <div className="mb-4">
+                  <h5 className="text-sm font-medium text-muted-foreground mb-2 flex items-center gap-1">
+                    <History className="h-3 w-3" />
+                    Recent Queries
+                  </h5>
+                  <div className="flex flex-wrap gap-1">
+                    {queryHistory.slice(0, 5).map((query, index) => (
+                      <Button
+                        key={index}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          setSearchQuery(query);
+                          setShowPromptLibrary(false);
+                        }}
+                        className="text-xs h-6 px-2 text-gray-600 hover:bg-blue-50"
+                      >
+                        {query.length > 40 ? query.substring(0, 40) + '...' : query}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Categorized Prompts */}
+              <div className="space-y-3">
+                {Object.entries(promptLibrary).map(([category, data]) => {
+                  const Icon = data.icon;
+                  const isExpanded = expandedCategory === category;
+                  
+                  return (
+                    <div key={category} className="border border-gray-200 rounded-lg bg-white">
+                      <button
+                        onClick={() => setExpandedCategory(isExpanded ? null : category)}
+                        className="w-full flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg"
+                      >
+                        <div className="flex items-center gap-2">
+                          <Icon className={`h-4 w-4 ${data.color}`} />
+                          <span className="font-medium text-sm">{category}</span>
+                          <Badge variant="secondary" className="text-xs">
+                            {data.prompts.length}
+                          </Badge>
+                        </div>
+                        {isExpanded ? (
+                          <ChevronDown className="h-4 w-4 text-gray-500" />
+                        ) : (
+                          <ChevronRight className="h-4 w-4 text-gray-500" />
+                        )}
+                      </button>
+                      
+                      {isExpanded && (
+                        <div className="px-3 pb-3 space-y-1">
+                          {data.prompts.map((prompt, index) => (
+                            <button
+                              key={index}
+                              onClick={() => {
+                                setSearchQuery(prompt);
+                                setShowPromptLibrary(false);
+                                setTimeout(() => handleQuerySubmit(), 100);
+                              }}
+                              className="w-full text-left p-2 text-xs text-gray-700 hover:bg-blue-50 rounded border-l-2 border-gray-200 hover:border-blue-400 transition-colors"
+                            >
+                              {prompt}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
           
           {/* AI Model Processing Status */}
           {isProcessing && (
