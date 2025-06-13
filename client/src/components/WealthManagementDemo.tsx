@@ -204,8 +204,8 @@ export default function WealthManagementDemo() {
           "• Results compiled from Harvard's portfolio database"
         ],
         sources: [
-          { type: 'database' as 'database', name: 'Harvard Portfolio Database', timestamp: '2024-12-15 14:30', confidence: 95, icon: Database },
-          { type: 'report' as 'report', name: 'Q4 Portfolio Summary', timestamp: '2024-12-10 09:15', confidence: 92, icon: FileText }
+          { type: 'database' as SourceType, name: 'Harvard Portfolio Database', timestamp: '2024-12-15 14:30', confidence: 95, icon: Database },
+          { type: 'report' as SourceType, name: 'Q4 Portfolio Summary', timestamp: '2024-12-10 09:15', confidence: 92, icon: FileText }
         ]
       };
 
@@ -240,10 +240,10 @@ export default function WealthManagementDemo() {
             "• Overall ESG portfolio score: 4.2/5.0"
           ],
           sources: [
-            { type: 'report' as 'report', name: 'ESG_Compliance_Q4_2024.pdf', timestamp: '2024-12-14 11:15', confidence: 97, icon: FileText },
-            { type: 'email' as 'email', name: 'Sarah Williams <swilliams@sustainalytics.com>', timestamp: '2024-12-13 09:30', confidence: 93, icon: Mail },
-            { type: 'api' as 'api', name: 'MSCI ESG Research API', timestamp: '2024-12-15 07:45', confidence: 96, icon: Link },
-            { type: 'pdf' as 'pdf', name: 'Carbon_Footprint_Assessment_2024.pdf', timestamp: '2024-12-11 13:20', confidence: 91, icon: FileText }
+            { type: 'report' as SourceType, name: 'ESG_Compliance_Q4_2024.pdf', timestamp: '2024-12-14 11:15', confidence: 97, icon: FileText },
+            { type: 'email' as SourceType, name: 'Sarah Williams <swilliams@sustainalytics.com>', timestamp: '2024-12-13 09:30', confidence: 93, icon: Mail },
+            { type: 'api' as SourceType, name: 'MSCI ESG Research API', timestamp: '2024-12-15 07:45', confidence: 96, icon: Link },
+            { type: 'pdf' as SourceType, name: 'Carbon_Footprint_Assessment_2024.pdf', timestamp: '2024-12-11 13:20', confidence: 91, icon: FileText }
           ]
         };
       } else if (query.includes("biotech") || query.includes("pharma") || query.includes("drug")) {
@@ -257,10 +257,10 @@ export default function WealthManagementDemo() {
             "• Portfolio allocation recommendation: 15-20% increase in biotech exposure"
           ],
           sources: [
-            { type: 'email' as 'email', name: 'Dr. James Liu <jliu@modernatx.com>', timestamp: '2024-12-14 15:22', confidence: 89, icon: Mail },
-            { type: 'pdf' as 'pdf', name: 'Biotech_Sector_Analysis_2024.pdf', timestamp: '2024-12-12 10:40', confidence: 95, icon: FileText },
-            { type: 'api' as 'api', name: 'PitchBook Private Market Data', timestamp: '2024-12-15 06:30', confidence: 92, icon: Link },
-            { type: 'report' as 'report', name: 'Healthcare Innovation Pipeline Report', timestamp: '2024-12-09 16:10', confidence: 94, icon: FileText }
+            { type: 'email' as SourceType, name: 'Dr. James Liu <jliu@modernatx.com>', timestamp: '2024-12-14 15:22', confidence: 89, icon: Mail },
+            { type: 'pdf' as SourceType, name: 'Biotech_Sector_Analysis_2024.pdf', timestamp: '2024-12-12 10:40', confidence: 95, icon: FileText },
+            { type: 'api' as SourceType, name: 'PitchBook Private Market Data', timestamp: '2024-12-15 06:30', confidence: 92, icon: Link },
+            { type: 'report' as SourceType, name: 'Healthcare Innovation Pipeline Report', timestamp: '2024-12-09 16:10', confidence: 94, icon: FileText }
           ]
         };
       } else if (query.includes("distribution") || query.includes("payout") || query.includes("return")) {
@@ -274,10 +274,10 @@ export default function WealthManagementDemo() {
             "• Total expected distributions: $573M"
           ],
           sources: [
-            { type: 'email' as 'email', name: 'David Park <dpark@sequoiacap.com>', timestamp: '2024-12-14 12:15', confidence: 98, icon: Mail },
-            { type: 'pdf' as 'pdf', name: 'Distribution_Schedule_Q1_2025.pdf', timestamp: '2024-12-13 09:45', confidence: 96, icon: FileText },
-            { type: 'database' as 'database', name: 'Capital Calls & Distributions DB', timestamp: '2024-12-15 08:15', confidence: 99, icon: Database },
-            { type: 'email' as 'email', name: 'Lisa Zhang <lzhang@tpg.com>', timestamp: '2024-12-12 14:30', confidence: 94, icon: Mail }
+            { type: 'email' as SourceType, name: 'David Park <dpark@sequoiacap.com>', timestamp: '2024-12-14 12:15', confidence: 98, icon: Mail },
+            { type: 'pdf' as SourceType, name: 'Distribution_Schedule_Q1_2025.pdf', timestamp: '2024-12-13 09:45', confidence: 96, icon: FileText },
+            { type: 'database' as SourceType, name: 'Capital Calls & Distributions DB', timestamp: '2024-12-15 08:15', confidence: 99, icon: Database },
+            { type: 'email' as SourceType, name: 'Lisa Zhang <lzhang@tpg.com>', timestamp: '2024-12-12 14:30', confidence: 94, icon: Mail }
           ]
         };
       }
