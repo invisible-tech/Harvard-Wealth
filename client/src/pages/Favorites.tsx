@@ -13,7 +13,7 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Plus, Edit, Trash2, Clock, Users, Target, AlertCircle, CheckCircle, XCircle, PlayCircle } from "lucide-react";
-import { apiRequest } from "@/lib/queryClient";
+
 import { useToast } from "@/hooks/use-toast";
 import type { FavoriteItem, InsertFavoriteItem } from "@shared/schema";
 
