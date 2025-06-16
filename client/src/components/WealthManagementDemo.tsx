@@ -415,7 +415,7 @@ export default function WealthManagementDemo() {
       {/* Header Section */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-foreground">Harvard Wealth Management</h2>
+          <h2 className="text-2xl font-bold text-foreground">Wealth Manager</h2>
           <p className="text-muted-foreground">Intelligent portfolio management and document processing</p>
         </div>
         <Button className="flex items-center gap-2">

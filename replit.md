@@ -143,6 +143,13 @@ Comprehensive AI model management system with:
   - Query history tracking with recent query recall functionality
   - Interactive AI processing visualization with real-time feedback
   - Custom HTML report generation for iframe viewing without authentication errors
+- June 14, 2025: Completed source attribution system:
+  - Added data lineage tracking showing sources like manager emails, PDFs, databases
+  - Enhanced query responses with confidence scores and timestamps
+  - Implemented complete data transparency for investment decision-making
+- June 14, 2025: Renamed application from "Harvard Demo" to "Wealth Manager"
+  - Updated main interface title and navigation labels
+  - Maintained all existing functionality while generalizing the branding
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
