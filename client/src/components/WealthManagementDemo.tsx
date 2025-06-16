@@ -308,102 +308,636 @@ export default function WealthManagementDemo() {
     const doc = recentDocuments.find(d => d.id === documentId);
     if (!doc) return '';
 
+    const reportTemplates = {
+      "1": {
+        title: "Q4 2024 Portfolio Performance Analysis",
+        subtitle: "Comprehensive Investment Review & Strategic Outlook",
+        metrics: [
+          { label: "Total AUM", value: "$2.4B", change: "+12.3% YoY" },
+          { label: "Net IRR", value: "+18.7%", change: "vs 14.2% benchmark" },
+          { label: "Risk-Adjusted Return", value: "1.84", change: "Sharpe Ratio" },
+          { label: "ESG Score", value: "4.7/5.0", change: "Top 5% globally" }
+        ],
+        sections: [
+          {
+            title: "Executive Summary",
+            content: `
+              <p><strong>Performance Highlights:</strong> The portfolio delivered exceptional returns of 18.7% net IRR, significantly outperforming our benchmark by 450 basis points. This performance was driven by strategic allocations to growth equity funds and technology-focused private equity investments.</p>
+              
+              <p><strong>Risk Management:</strong> Despite increased market volatility in Q4, portfolio risk metrics remained within target parameters. The Sharpe ratio of 1.84 places our performance in the top quartile of institutional portfolios.</p>
+              
+              <p><strong>ESG Leadership:</strong> Our commitment to sustainable investing continues to drive long-term value creation, with an ESG score of 4.7/5.0 ranking in the top 5% globally among institutional investors.</p>
+            `
+          },
+          {
+            title: "Asset Allocation & Performance Analysis",
+            content: `
+              <h4>Strategic Asset Allocation (as of December 31, 2024):</h4>
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0;">
+                <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                  <h5 style="margin: 0 0 10px 0; color: #1e40af;">Private Equity (45% - $1.08B)</h5>
+                  <div style="color: #059669; font-weight: bold; font-size: 18px;">+21.4% Net IRR</div>
+                  <div style="font-size: 14px; color: #6b7280;">Target allocation: 40-50%</div>
+                </div>
+                <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; border-left: 4px solid #10b981;">
+                  <h5 style="margin: 0 0 10px 0; color: #059669;">Growth Equity (25% - $600M)</h5>
+                  <div style="color: #059669; font-weight: bold; font-size: 18px;">+16.8% Net IRR</div>
+                  <div style="font-size: 14px; color: #6b7280;">Target allocation: 20-30%</div>
+                </div>
+                <div style="background: #fef7ff; padding: 20px; border-radius: 8px; border-left: 4px solid #a855f7;">
+                  <h5 style="margin: 0 0 10px 0; color: #7c3aed;">Venture Capital (20% - $480M)</h5>
+                  <div style="color: #059669; font-weight: bold; font-size: 18px;">+28.3% Net IRR</div>
+                  <div style="font-size: 14px; color: #6b7280;">Target allocation: 15-25%</div>
+                </div>
+                <div style="background: #fffbeb; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                  <h5 style="margin: 0 0 10px 0; color: #d97706;">Real Assets (10% - $240M)</h5>
+                  <div style="color: #059669; font-weight: bold; font-size: 18px;">+12.1% Net IRR</div>
+                  <div style="font-size: 14px; color: #6b7280;">Target allocation: 10-15%</div>
+                </div>
+              </div>
+              
+              <h4>Top 10 Holdings by Performance (YTD 2024):</h4>
+              <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background: white;">
+                <thead>
+                  <tr style="background: #f8fafc;">
+                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0;">Manager/Fund</th>
+                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0;">Strategy</th>
+                    <th style="padding: 15px; text-align: right; border-bottom: 2px solid #e2e8f0;">Net IRR</th>
+                    <th style="padding: 15px; text-align: right; border-bottom: 2px solid #e2e8f0;">TVPI Multiple</th>
+                    <th style="padding: 15px; text-align: right; border-bottom: 2px solid #e2e8f0;">Commitment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px; font-weight: 600;">Sequoia Capital XIII</td>
+                    <td style="padding: 12px;">Growth/VC</td>
+                    <td style="padding: 12px; text-align: right; color: #059669; font-weight: bold;">24.3%</td>
+                    <td style="padding: 12px; text-align: right;">2.8x</td>
+                    <td style="padding: 12px; text-align: right;">$125M</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px; font-weight: 600;">Bain Capital Tech XII</td>
+                    <td style="padding: 12px;">Tech Buyout</td>
+                    <td style="padding: 12px; text-align: right; color: #059669; font-weight: bold;">22.1%</td>
+                    <td style="padding: 12px; text-align: right;">2.6x</td>
+                    <td style="padding: 12px; text-align: right;">$100M</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px; font-weight: 600;">General Atlantic X</td>
+                    <td style="padding: 12px;">Growth Equity</td>
+                    <td style="padding: 12px; text-align: right; color: #059669; font-weight: bold;">19.8%</td>
+                    <td style="padding: 12px; text-align: right;">2.4x</td>
+                    <td style="padding: 12px; text-align: right;">$150M</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px; font-weight: 600;">TPG Growth III</td>
+                    <td style="padding: 12px;">Mid-Market PE</td>
+                    <td style="padding: 12px; text-align: right; color: #059669; font-weight: bold;">17.2%</td>
+                    <td style="padding: 12px; text-align: right;">2.1x</td>
+                    <td style="padding: 12px; text-align: right;">$125M</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px; font-weight: 600;">Kleiner Perkins XX</td>
+                    <td style="padding: 12px;">AI/ML VC</td>
+                    <td style="padding: 12px; text-align: right; color: #059669; font-weight: bold;">31.7%</td>
+                    <td style="padding: 12px; text-align: right;">3.2x</td>
+                    <td style="padding: 12px; text-align: right;">$75M</td>
+                  </tr>
+                </tbody>
+              </table>
+            `
+          },
+          {
+            title: "Risk Management & Analytics",
+            content: `
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 25px 0;">
+                <div style="background: #f8fafc; padding: 25px; border-radius: 10px;">
+                  <h4 style="margin: 0 0 20px 0; color: #374151;">Portfolio Risk Metrics</h4>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <td style="padding: 10px 0; font-weight: 500;">Portfolio Beta</td>
+                      <td style="text-align: right; padding: 10px 0; font-weight: 600;">0.92</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <td style="padding: 10px 0; font-weight: 500;">Value at Risk (95%)</td>
+                      <td style="text-align: right; padding: 10px 0; font-weight: 600;">-3.2%</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <td style="padding: 10px 0; font-weight: 500;">Maximum Drawdown</td>
+                      <td style="text-align: right; padding: 10px 0; font-weight: 600;">-8.1%</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e5e7eb;">
+                      <td style="padding: 10px 0; font-weight: 500;">Tracking Error</td>
+                      <td style="text-align: right; padding: 10px 0; font-weight: 600;">4.2%</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 10px 0; font-weight: 500;">Information Ratio</td>
+                      <td style="text-align: right; padding: 10px 0; font-weight: 600;">1.07</td>
+                    </tr>
+                  </table>
+                </div>
+                
+                <div style="background: #fef7ff; padding: 25px; border-radius: 10px;">
+                  <h4 style="margin: 0 0 20px 0; color: #374151;">Concentration Analysis</h4>
+                  <div style="margin: 15px 0;">
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                      <span style="font-weight: 500;">Top 5 Positions</span>
+                      <span style="font-weight: 600;">32.4%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                      <span style="font-weight: 500;">Top 10 Positions</span>
+                      <span style="font-weight: 600;">54.7%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                      <span style="font-weight: 500;">Single Manager Max</span>
+                      <span style="font-weight: 600;">8.3%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e5e7eb;">
+                      <span style="font-weight: 500;">Technology Exposure</span>
+                      <span style="font-weight: 600;">28.4%</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                      <span style="font-weight: 500;">Geographic Diversification</span>
+                      <span style="font-weight: 600;">6 regions</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <h4>Stress Testing Results:</h4>
+              <table style="width: 100%; border-collapse: collapse; margin: 20px 0; background: white;">
+                <thead>
+                  <tr style="background: #f8fafc;">
+                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #e2e8f0;">Scenario</th>
+                    <th style="padding: 15px; text-align: right; border-bottom: 2px solid #e2e8f0;">Probability</th>
+                    <th style="padding: 15px; text-align: right; border-bottom: 2px solid #e2e8f0;">Portfolio Impact</th>
+                    <th style="padding: 15px; text-align: right; border-bottom: 2px solid #e2e8f0;">Recovery Period</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px; font-weight: 600;">Base Case</td>
+                    <td style="padding: 12px; text-align: right;">60%</td>
+                    <td style="padding: 12px; text-align: right; color: #059669; font-weight: bold;">+12-16%</td>
+                    <td style="padding: 12px; text-align: right;">N/A</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px; font-weight: 600;">Market Correction</td>
+                    <td style="padding: 12px; text-align: right;">25%</td>
+                    <td style="padding: 12px; text-align: right; color: #d97706; font-weight: bold;">-5-8%</td>
+                    <td style="padding: 12px; text-align: right;">8-12 months</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 12px; font-weight: 600;">Economic Recession</td>
+                    <td style="padding: 12px; text-align: right;">12%</td>
+                    <td style="padding: 12px; text-align: right; color: #dc2626; font-weight: bold;">-12-18%</td>
+                    <td style="padding: 12px; text-align: right;">18-24 months</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 12px; font-weight: 600;">Severe Crisis</td>
+                    <td style="padding: 12px; text-align: right;">3%</td>
+                    <td style="padding: 12px; text-align: right; color: #dc2626; font-weight: bold;">-25-35%</td>
+                    <td style="padding: 12px; text-align: right;">36+ months</td>
+                  </tr>
+                </tbody>
+              </table>
+            `
+          },
+          {
+            title: "ESG & Sustainability Metrics",
+            content: `
+              <div style="background: #f0fdf4; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #10b981;">
+                <h4 style="margin: 0 0 20px 0; color: #059669;">ESG Performance Highlights</h4>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                  <div style="text-align: center;">
+                    <div style="font-size: 28px; font-weight: bold; color: #059669;">4.7/5.0</div>
+                    <div style="font-weight: 600; margin: 5px 0;">Overall ESG Score</div>
+                    <div style="font-size: 14px; color: #6b7280;">Top 5% globally</div>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="font-size: 28px; font-weight: bold; color: #059669;">-23%</div>
+                    <div style="font-weight: 600; margin: 5px 0;">Carbon Reduction</div>
+                    <div style="font-size: 14px; color: #6b7280;">vs 2020 baseline</div>
+                  </div>
+                  <div style="text-align: center;">
+                    <div style="font-size: 28px; font-weight: bold; color: #059669;">18%</div>
+                    <div style="font-weight: 600; margin: 5px 0;">Impact Investments</div>
+                    <div style="font-size: 14px; color: #6b7280;">of total portfolio</div>
+                  </div>
+                </div>
+              </div>
+              
+              <h4>Sustainable Investment Initiatives:</h4>
+              <ul style="background: #fafafa; padding: 20px 25px; border-radius: 8px; margin: 15px 0;">
+                <li style="margin: 10px 0;"><strong>Clean Technology:</strong> $432M allocated to renewable energy and clean tech companies (18% of portfolio)</li>
+                <li style="margin: 10px 0;"><strong>Healthcare Innovation:</strong> $285M in biotech and digital health solutions addressing global health challenges</li>
+                <li style="margin: 10px 0;"><strong>Financial Inclusion:</strong> $156M in fintech companies expanding access to financial services in emerging markets</li>
+                <li style="margin: 10px 0;"><strong>Education Technology:</strong> $94M in edtech platforms democratizing access to quality education</li>
+              </ul>
+            `
+          },
+          {
+            title: "Strategic Outlook & Recommendations",
+            content: `
+              <h4>2025 Strategic Priorities:</h4>
+              <div style="background: #f8fafc; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;">
+                  <div>
+                    <h5 style="color: #1e40af; margin: 0 0 15px 0;">Growth Initiatives</h5>
+                    <ul style="margin: 0; padding-left: 20px;">
+                      <li style="margin: 8px 0;">Increase AI/ML allocation to 12% of portfolio</li>
+                      <li style="margin: 8px 0;">Expand emerging markets exposure to 15%</li>
+                      <li style="margin: 8px 0;">Target 3-4 new manager relationships</li>
+                      <li style="margin: 8px 0;">Launch co-investment program</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 style="color: #059669; margin: 0 0 15px 0;">Risk Management</h5>
+                    <ul style="margin: 0; padding-left: 20px;">
+                      <li style="margin: 8px 0;">Implement enhanced ESG screening</li>
+                      <li style="margin: 8px 0;">Increase liquid alternatives to 15%</li>
+                      <li style="margin: 8px 0;">Deploy tactical hedging strategies</li>
+                      <li style="margin: 8px 0;">Strengthen operational due diligence</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              
+              <h4>Market Outlook & Positioning:</h4>
+              <div style="background: #fffbeb; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #f59e0b;">
+                <p style="margin: 0;"><strong>Economic Environment:</strong> We anticipate continued volatility in 2025 driven by geopolitical tensions and monetary policy transitions. Our portfolio is positioned defensively with strong balance sheets and recession-resilient business models.</p>
+              </div>
+              
+              <div style="background: #f0f9ff; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #3b82f6;">
+                <p style="margin: 0;"><strong>Technology Trends:</strong> AI adoption acceleration presents significant opportunities. We're increasing exposure to enterprise AI, automation, and data infrastructure companies while maintaining discipline on valuations.</p>
+              </div>
+              
+              <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #10b981;">
+                <p style="margin: 0;"><strong>Sustainability Focus:</strong> ESG integration remains a key differentiator. Companies with strong sustainability profiles continue to outperform, driving our commitment to impact investing and carbon neutrality by 2030.</p>
+              </div>
+            `
+          }
+        ]
+      },
+      "2": {
+        title: "Manager Due Diligence Report - Q4 2024",
+        subtitle: "Comprehensive Review of Investment Manager Performance",
+        metrics: [
+          { label: "Managers Evaluated", value: "23", change: "100% portfolio coverage" },
+          { label: "Average Performance", value: "+16.2%", change: "vs 12.1% target" },
+          { label: "ESG Compliance", value: "96%", change: "+4% improvement" },
+          { label: "New Commitments", value: "$185M", change: "3 new managers" }
+        ],
+        sections: [
+          {
+            title: "Manager Performance Overview",
+            content: `
+              <p>This comprehensive quarterly review evaluates all 23 active investment managers across our private markets portfolio, analyzing quantitative performance metrics, operational capabilities, and ESG compliance standards.</p>
+              
+              <h4>Performance Distribution Analysis:</h4>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 25px 0;">
+                <div style="background: #d1fae5; padding: 25px; border-radius: 10px; text-align: center; border: 2px solid #a7f3d0;">
+                  <div style="font-size: 36px; font-weight: bold; color: #059669; margin-bottom: 10px;">12</div>
+                  <div style="font-weight: 600; font-size: 18px; margin-bottom: 5px;">Outperforming</div>
+                  <div style="font-size: 14px; color: #6b7280;">Exceeding benchmark by >200bps</div>
+                  <div style="font-size: 12px; color: #059669; margin-top: 8px;">52% of portfolio</div>
+                </div>
+                <div style="background: #fef3c7; padding: 25px; border-radius: 10px; text-align: center; border: 2px solid #fde68a;">
+                  <div style="font-size: 36px; font-weight: bold; color: #d97706; margin-bottom: 10px;">8</div>
+                  <div style="font-weight: 600; font-size: 18px; margin-bottom: 5px;">On Target</div>
+                  <div style="font-size: 14px; color: #6b7280;">Within ±200bps of benchmark</div>
+                  <div style="font-size: 12px; color: #d97706; margin-top: 8px;">35% of portfolio</div>
+                </div>
+                <div style="background: #fee2e2; padding: 25px; border-radius: 10px; text-align: center; border: 2px solid #fecaca;">
+                  <div style="font-size: 36px; font-weight: bold; color: #dc2626; margin-bottom: 10px;">3</div>
+                  <div style="font-weight: 600; font-size: 18px; margin-bottom: 5px;">Under Review</div>
+                  <div style="font-size: 14px; color: #6b7280;">Below benchmark by >200bps</div>
+                  <div style="font-size: 12px; color: #dc2626; margin-top: 8px;">13% of portfolio</div>
+                </div>
+              </div>
+            `
+          }
+        ]
+      },
+      "3": {
+        title: "Risk Assessment & Stress Testing Analysis",
+        subtitle: "Portfolio Resilience & Scenario Planning Report",
+        metrics: [
+          { label: "Portfolio VaR (95%)", value: "-3.2%", change: "Within tolerance" },
+          { label: "Stress Test Loss", value: "-12.8%", change: "Severe recession scenario" },
+          { label: "Liquidity Score", value: "8.1/10", change: "Strong liquidity position" },
+          { label: "Correlation Risk", value: "0.64", change: "Moderate correlation to S&P 500" }
+        ],
+        sections: [
+          {
+            title: "Comprehensive Risk Analysis",
+            content: `
+              <p>Our risk management framework employs sophisticated quantitative models and stress testing methodologies to assess portfolio resilience across various market scenarios and economic conditions.</p>
+            `
+          }
+        ]
+      }
+    };
+
+    const template = reportTemplates[documentId as keyof typeof reportTemplates];
+    if (!template) return '';
+
     return `
       <!DOCTYPE html>
-      <html>
+      <html lang="en">
       <head>
-        <title>${doc.title}</title>
+        <title>${template.title}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+          * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+          }
           body { 
-            font-family: Arial, sans-serif; 
-            margin: 20px; 
-            line-height: 1.6; 
-            background: #f8f9fa;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.7; 
+            background: #f8fafc;
+            color: #1e293b;
+            padding: 20px;
+          }
+          .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
           }
           .header { 
-            background: #1e40af; 
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); 
             color: white; 
-            padding: 20px; 
-            text-align: center; 
-            border-radius: 8px; 
-            margin-bottom: 20px;
+            padding: 50px 40px 40px; 
+            position: relative;
+            overflow: hidden;
+          }
+          .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+          }
+          .header-content {
+            position: relative;
+            z-index: 1;
+          }
+          .header h1 { 
+            font-size: 2.75rem; 
+            font-weight: 800; 
+            margin-bottom: 10px;
+            letter-spacing: -0.025em;
+          }
+          .header p { 
+            font-size: 1.2rem; 
+            opacity: 0.9; 
+            font-weight: 400;
+          }
+          .content {
+            padding: 40px;
           }
           .metrics { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 15px; 
-            margin: 20px 0; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 25px; 
+            margin: 0 0 40px 0; 
           }
           .metric-card { 
-            background: white; 
-            padding: 15px; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 30px; 
+            border-radius: 12px; 
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+          }
+          .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #1e40af);
+          }
+          .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+          }
+          .metric-label { 
+            font-size: 0.9rem; 
+            color: #64748b; 
+            margin-bottom: 12px; 
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
           }
           .metric-value { 
-            font-size: 24px; 
-            font-weight: bold; 
+            font-size: 2.5rem; 
+            font-weight: 800; 
             color: #059669; 
+            margin-bottom: 8px;
+            line-height: 1;
+          }
+          .metric-change { 
+            font-size: 0.9rem; 
+            color: #6b7280; 
+            font-weight: 500;
           }
           .section { 
-            background: white; 
-            padding: 20px; 
-            margin: 15px 0; 
-            border-radius: 8px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+            margin-bottom: 40px; 
+            padding: 35px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
           }
-          .insights li { 
-            margin: 8px 0; 
+          .section h2 { 
+            font-size: 1.75rem; 
+            font-weight: 700; 
+            color: #1e293b;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #e2e8f0;
+            position: relative;
+          }
+          .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #3b82f6, #1e40af);
+          }
+          .section h3 { 
+            font-size: 1.4rem; 
+            font-weight: 600; 
+            color: #374151;
+            margin: 30px 0 20px 0;
+          }
+          .section h4 { 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+            color: #4b5563;
+            margin: 25px 0 15px 0;
+          }
+          .section h5 { 
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: #6b7280;
+            margin: 20px 0 10px 0;
+          }
+          .section p {
+            margin-bottom: 16px;
+            font-size: 1rem;
+            line-height: 1.7;
+          }
+          .footer {
+            background: #f1f5f9;
+            padding: 30px 40px;
+            text-align: center;
+            color: #64748b;
+            border-top: 1px solid #e2e8f0;
+          }
+          .footer p {
+            margin: 8px 0;
+          }
+          table { 
+            width: 100%; 
+            border-collapse: separate; 
+            border-spacing: 0; 
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+          }
+          th { 
+            background: #f8fafc; 
+            font-weight: 600; 
+            color: #374151;
+            padding: 18px 16px;
+            text-align: left;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          }
+          td { 
+            padding: 16px; 
+            border-bottom: 1px solid #f1f5f9; 
+            background: white;
+          }
+          tr:hover td { 
+            background: #f8fafc; 
+          }
+          tr:last-child td {
+            border-bottom: none;
+          }
+          ul, ol { 
+            padding-left: 24px; 
+            margin: 16px 0;
+          }
+          li { 
+            margin: 12px 0; 
+            line-height: 1.6;
+          }
+          strong {
+            font-weight: 600;
+            color: #1e293b;
+          }
+          .print-break { 
+            page-break-before: always; 
+          }
+          @media print {
+            body { 
+              background: white; 
+              padding: 0;
+            }
+            .container {
+              box-shadow: none;
+            }
+            .header { 
+              background: #1e40af !important; 
+            }
+            .section { 
+              box-shadow: none; 
+              break-inside: avoid;
+            }
+            .metric-card {
+              break-inside: avoid;
+            }
+          }
+          @media (max-width: 768px) {
+            .content, .footer {
+              padding: 20px;
+            }
+            .header {
+              padding: 30px 20px;
+            }
+            .header h1 {
+              font-size: 2rem;
+            }
+            .section {
+              padding: 25px;
+            }
+            .metrics {
+              grid-template-columns: 1fr;
+            }
+            table {
+              font-size: 0.9rem;
+            }
+            th, td {
+              padding: 12px 8px;
+            }
           }
         </style>
       </head>
       <body>
-        <div class="header">
-          <h1>${doc.title}</h1>
-          <p>Harvard Wealth Management Portfolio Analysis</p>
-          <p>Date: ${doc.date}</p>
-        </div>
-        
-        <div class="metrics">
-          <div class="metric-card">
-            <div class="metric-value">${doc.irr}</div>
-            <div>Internal Rate of Return</div>
+        <div class="container">
+          <div class="header">
+            <div class="header-content">
+              <h1>${template.title}</h1>
+              <p>${template.subtitle} • Generated ${new Date().toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+              })}</p>
+            </div>
           </div>
-          <div class="metric-card">
-            <div class="metric-value">${doc.aum}</div>
-            <div>Assets Under Management</div>
+          
+          <div class="content">
+            <div class="metrics">
+              ${template.metrics.map(metric => `
+                <div class="metric-card">
+                  <div class="metric-label">${metric.label}</div>
+                  <div class="metric-value">${metric.value}</div>
+                  <div class="metric-change">${metric.change}</div>
+                </div>
+              `).join('')}
+            </div>
+            
+            ${template.sections.map((section, index) => `
+              <div class="section ${index > 0 ? 'print-break' : ''}">
+                <h2>${section.title}</h2>
+                ${section.content}
+              </div>
+            `).join('')}
           </div>
-          <div class="metric-card">
-            <div class="metric-value">${doc.status}</div>
-            <div>Processing Status</div>
+          
+          <div class="footer">
+            <p><strong>Confidential Investment Report</strong></p>
+            <p>This document contains proprietary and confidential information. Distribution is restricted to authorized recipients only.</p>
+            <p>Report generated by Wealth Manager Platform • ${new Date().toLocaleDateString()}</p>
           </div>
-        </div>
-        
-        <div class="section">
-          <h2>Executive Summary</h2>
-          <p>This quarterly report provides a comprehensive analysis of ${doc.title.split(' ')[0]} ${doc.title.split(' ')[1]}'s portfolio performance, strategic initiatives, and market outlook for the current period.</p>
-        </div>
-        
-        <div class="section">
-          <h2>Key Performance Insights</h2>
-          <ul class="insights">
-            ${doc.keyInsights.map(insight => `<li>${insight}</li>`).join('')}
-          </ul>
-        </div>
-        
-        <div class="section">
-          <h2>Portfolio Composition</h2>
-          <p>The fund maintains a diversified portfolio across multiple sectors with strategic focus on high-growth opportunities in technology, healthcare, and sustainable investments.</p>
-        </div>
-        
-        <div class="section">
-          <h2>Risk Assessment</h2>
-          <p>Current risk metrics indicate a well-balanced portfolio with appropriate diversification and strong ESG compliance ratings across all major holdings.</p>
-        </div>
-        
-        <div class="section">
-          <h2>Forward-Looking Outlook</h2>
-          <p>Based on current market conditions and portfolio performance, we maintain a positive outlook for the next quarter with continued focus on sustainable growth and strategic value creation.</p>
         </div>
       </body>
       </html>
