@@ -150,6 +150,14 @@ Comprehensive AI model management system with:
 - June 14, 2025: Renamed application from "Harvard Demo" to "Wealth Manager"
   - Updated main interface title and navigation labels
   - Maintained all existing functionality while generalizing the branding
+- June 15, 2025: Enhanced full reports with comprehensive investment analysis
+  - Created detailed 8-12 page institutional-grade reports for each document
+  - Added professional styling with tables, charts, and financial metrics
+  - Included risk analysis, ESG tracking, and strategic recommendations
+- June 15, 2025: Integrated interactive Harvard Wealth Management data visualization
+  - Updated Data Environment page with iframe to Harvard visualization platform
+  - Enabled full interactivity for exploring various information sources
+  - Provides comprehensive data analysis and visualization capabilities
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
