@@ -73,34 +73,7 @@ function Router() {
     );
   }
 
-  // Special handling for Data Environment - full page layout with white background
-  if (location === "/data-environment") {
-    return (
-      <div className="flex h-screen overflow-hidden bg-white">
-        {/* Mobile Overlay */}
-        {isMobileMenuOpen && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-            onClick={closeMobileMenu}
-          />
-        )}
-        
-        {/* Mobile Menu */}
-        <MobileMenu 
-          isOpen={isMobileMenuOpen} 
-          onClose={closeMobileMenu} 
-        />
-        
-        {/* Desktop Sidebar */}
-        <Sidebar />
-        
-        {/* Main Content - No Header, No Padding */}
-        <main className="flex-1 min-w-0">
-          <DataEnvironment />
-        </main>
-      </div>
-    );
-  }
+
 
   return (
     <div className="flex h-screen overflow-hidden">
