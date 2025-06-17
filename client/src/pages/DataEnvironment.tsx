@@ -96,6 +96,37 @@ export default function DataEnvironment() {
           })}
         </div>
 
+        {/* Data Platform Visualization */}
+        <Card className="mb-8 bg-white dark:bg-gray-800">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <CardTitle>Data Environment</CardTitle>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                Interactive data platform and visualization environment
+              </p>
+            </div>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => window.open('https://data-platform-dot.vercel.app/visualize', '_blank')}
+            >
+              <ExternalLink className="h-4 w-4 mr-2" />
+              Open Full View
+            </Button>
+          </CardHeader>
+          <CardContent>
+            <div className="w-full h-[600px] border rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900">
+              <iframe 
+                data-replit-metadata="client/src/App.tsx:160:14"
+                data-component-name="iframe"
+                src="https://data-platform-dot.vercel.app/visualize"
+                className="w-full h-full border-0"
+                title="Data Environment"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Harvard Wealth Management Visualization */}
