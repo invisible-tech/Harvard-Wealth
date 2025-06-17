@@ -10,10 +10,16 @@ import {
   ExternalLink,
   Activity,
   Globe,
-  Server
+  Server,
+  RefreshCw,
+  AlertCircle
 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function DataEnvironment() {
+  const [iframeError, setIframeError] = useState(false);
+  const [isRetrying, setIsRetrying] = useState(false);
+
   const dataSources = [
     {
       name: "Portfolio Database",
@@ -110,26 +116,84 @@ export default function DataEnvironment() {
               </Button>
             </CardHeader>
             <CardContent>
-              <div className="w-full h-96 border rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="mb-4">
-                    <BarChart3 className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+              <div className="w-full h-96 border rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900 relative">
+                {!iframeError ? (
+                  <iframe 
+                    src="https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize"
+                    className="w-full h-full border-0"
+                    title="Harvard Wealth Management Data Visualization"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
+                    onError={() => setIframeError(true)}
+                    onLoad={(e) => {
+                      // Check if iframe loaded successfully
+                      try {
+                        const iframe = e.target as HTMLIFrameElement;
+                        if (iframe.contentWindow) {
+                          setIframeError(false);
+                        }
+                      } catch (error) {
+                        setIframeError(true);
+                      }
+                    }}
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-full">
+                    <div className="text-center p-8 max-w-md">
+                      <div className="mb-4">
+                        <AlertCircle className="h-12 w-12 text-amber-500 mx-auto mb-3" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                        CORS Embedding Blocked
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                        The external visualization cannot be embedded due to security restrictions. 
+                        This occurs when the target site has X-Frame-Options or Content Security Policy headers 
+                        that prevent iframe embedding.
+                      </p>
+                      <div className="space-y-3">
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          onClick={() => window.open('https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize', '_blank')}
+                          className="w-full"
+                        >
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Open Full Visualization
+                        </Button>
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          onClick={() => {
+                            setIsRetrying(true);
+                            setIframeError(false);
+                            setTimeout(() => setIsRetrying(false), 2000);
+                          }}
+                          disabled={isRetrying}
+                          className="w-full"
+                        >
+                          {isRetrying ? (
+                            <>
+                              <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+                              Retrying...
+                            </>
+                          ) : (
+                            <>
+                              <RefreshCw className="h-4 w-4 mr-2" />
+                              Retry Embedding
+                            </>
+                          )}
+                        </Button>
+                      </div>
+                      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          <strong>Technical Note:</strong> To enable embedding, the target site needs to modify 
+                          their HTTP headers to allow iframe integration from this domain.
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    External Visualization Unavailable
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                    The Harvard Wealth Management visualization at<br/>
-                    <code className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
-                      harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app
-                    </code><br/>
-                    is currently refusing connections due to CORS restrictions.
-                  </p>
-                  <Button variant="outline" size="sm" onClick={() => window.open('https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize', '_blank')}>
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Open in New Tab
-                  </Button>
-                </div>
+                )}
               </div>
             </CardContent>
           </Card>
