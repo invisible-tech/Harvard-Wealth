@@ -12,7 +12,7 @@ import {
   Globe,
   Server
 } from "lucide-react";
-import HarvardVisualization from "@/components/HarvardVisualization";
+
 
 export default function DataEnvironment() {
   const dataSources = [
@@ -116,7 +116,11 @@ export default function DataEnvironment() {
             </CardHeader>
             <CardContent className="p-0">
               <div className="w-full h-96 border rounded-lg overflow-hidden bg-white dark:bg-gray-900">
-                <HarvardVisualization />
+                <iframe
+                  src="https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize"
+                  className="w-full h-full border-0"
+                  title="Harvard Wealth Management Data Visualization"
+                />
               </div>
             </CardContent>
           </Card>
