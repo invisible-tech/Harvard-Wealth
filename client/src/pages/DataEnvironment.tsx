@@ -110,26 +110,13 @@ export default function DataEnvironment() {
               </Button>
             </CardHeader>
             <CardContent>
-              <div className="w-full h-96 border rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="mb-4">
-                    <BarChart3 className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                    External Visualization Unavailable
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                    The Harvard Wealth Management visualization at<br/>
-                    <code className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">
-                      harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app
-                    </code><br/>
-                    is currently refusing connections due to CORS restrictions.
-                  </p>
-                  <Button variant="outline" size="sm" onClick={() => window.open('https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize', '_blank')}>
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Open in New Tab
-                  </Button>
-                </div>
+              <div className="w-full h-96 border rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900">
+                <iframe 
+                  src="/api/proxy/harvard-viz"
+                  className="w-full h-full border-0"
+                  title="Harvard Wealth Management Data Visualization"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                />
               </div>
             </CardContent>
           </Card>
