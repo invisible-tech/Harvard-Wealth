@@ -445,7 +445,7 @@ export default function ProcessFlowView() {
                 {selectedStep.entities.map((entity, index) => (
                   <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
                     <div>
-                      <span className="text-sm font-medium">{entity.name || entity.id}</span>
+                      <span className="text-sm font-medium">{(entity as any).name || entity.id}</span>
                       <p className="text-xs text-muted-foreground">{entity.type}</p>
                     </div>
                     {entity.value && (

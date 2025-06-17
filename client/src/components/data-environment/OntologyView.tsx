@@ -80,8 +80,8 @@ const ontologyData = {
 
 // Add default entities for missing ones
 ontologyData.rootEntities.forEach(entityName => {
-  if (!ontologyData.entityDetails[entityName]) {
-    ontologyData.entityDetails[entityName] = {
+  if (!(ontologyData.entityDetails as any)[entityName]) {
+    (ontologyData.entityDetails as any)[entityName] = {
       name: entityName,
       color: '#757575',
       description: 'Data system for wealth management operations',
@@ -102,7 +102,7 @@ export default function OntologyView() {
   const [zoomLevel, setZoomLevel] = useState(1);
 
   const getEntityDetails = (entityName: string) => {
-    return ontologyData.entityDetails[entityName] || ontologyData.entityDetails[ontologyData.rootEntities[0]];
+    return (ontologyData.entityDetails as any)[entityName] || (ontologyData.entityDetails as any)[ontologyData.rootEntities[0]];
   };
 
   const selectedEntityDetails = getEntityDetails(selectedEntity);
@@ -255,7 +255,7 @@ export default function OntologyView() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
-                  {selectedEntityDetails.fields.map((field, index) => (
+                  {selectedEntityDetails.fields.map((field: any, index: number) => (
                     <div key={index} className="p-3 border rounded-lg">
                       <div className="flex justify-between items-start mb-1">
                         <h5 className="font-medium text-sm">{field.name}</h5>
@@ -280,7 +280,7 @@ export default function OntologyView() {
             <CardContent>
               <div className="space-y-3">
                 {selectedEntityDetails.relationships.length > 0 ? (
-                  selectedEntityDetails.relationships.map((relationship, index) => (
+                  selectedEntityDetails.relationships.map((relationship: any, index: number) => (
                     <div key={index} className="p-3 border rounded-lg">
                       <div className="flex justify-between items-start mb-1">
                         <h5 className="font-medium text-sm">{relationship.entity}</h5>
