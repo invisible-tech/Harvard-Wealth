@@ -94,68 +94,65 @@ export default function DataEnvironment() {
           })}
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Harvard Wealth Management Visualization */}
-          <Card className="lg:col-span-2 bg-white dark:bg-gray-800">
-            <CardHeader className="flex flex-row items-center justify-between">
-              <div>
-                <CardTitle>Harvard Wealth Management Data Visualization</CardTitle>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                  Interactive data exploration and analysis platform
-                </p>
-              </div>
-              <Button 
-                variant="outline" 
-                size="sm"
-                onClick={() => window.open('https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize', '_blank')}
-              >
-                <ExternalLink className="h-4 w-4 mr-2" />
-                Open Full View
-              </Button>
-            </CardHeader>
-            <CardContent className="p-0">
-              <div className="w-full h-96 border rounded-lg overflow-hidden bg-white dark:bg-gray-900">
-                <iframe
-                  src="https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize"
-                  className="w-full h-full border-0"
-                  title="Harvard Wealth Management Data Visualization"
-                />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Data Integrations */}
-          <Card className="bg-white dark:bg-gray-800">
-            <CardHeader>
-              <CardTitle>Active Integrations</CardTitle>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
-                External data sources and APIs
+        {/* Harvard Wealth Management Visualization - Full Width */}
+        <Card className="mb-8 bg-white dark:bg-gray-800">
+          <CardHeader className="flex flex-row items-center justify-between">
+            <div>
+              <CardTitle>Harvard Wealth Management Data Visualization</CardTitle>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                Interactive data exploration and analysis platform
               </p>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {integrations.map((integration, index) => {
-                  const Icon = integration.icon;
-                  return (
-                    <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
-                      <div className="flex items-center space-x-3">
-                        <div className="p-2 bg-blue-100 text-blue-700 rounded-full">
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <div>
-                          <div className="font-medium text-sm">{integration.name}</div>
-                          <div className="text-xs text-gray-500">{integration.status}</div>
-                        </div>
+            </div>
+            <Button 
+              variant="outline" 
+              size="sm"
+              onClick={() => window.open('https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize', '_blank')}
+            >
+              <ExternalLink className="h-4 w-4 mr-2" />
+              Open Full View
+            </Button>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="w-full h-[800px] border rounded-lg overflow-hidden bg-white dark:bg-gray-900">
+              <iframe
+                src="https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize"
+                className="w-full h-full border-0"
+                title="Harvard Wealth Management Data Visualization"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Data Integrations */}
+        <Card className="bg-white dark:bg-gray-800">
+          <CardHeader>
+            <CardTitle>Active Integrations</CardTitle>
+            <p className="text-sm text-gray-600 dark:text-gray-300">
+              External data sources and APIs
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              {integrations.map((integration, index) => {
+                const Icon = integration.icon;
+                return (
+                  <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                    <div className="flex items-center space-x-3">
+                      <div className="p-2 bg-blue-100 text-blue-700 rounded-full">
+                        <Icon className="h-4 w-4" />
                       </div>
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div>
+                        <div className="font-medium text-sm">{integration.name}</div>
+                        <div className="text-xs text-gray-500">{integration.status}</div>
+                      </div>
                     </div>
-                  );
-                })}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
 
         {/* Data Pipeline Status */}
         <Card className="mt-8 bg-white dark:bg-gray-800">
