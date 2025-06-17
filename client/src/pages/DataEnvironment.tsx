@@ -10,11 +10,13 @@ import {
   ExternalLink,
   Activity,
   Globe,
-  Server
+  Server,
+  AlertTriangle
 } from "lucide-react";
-import HarvardVisualization from "@/components/HarvardVisualization";
+import { useState } from "react";
 
 export default function DataEnvironment() {
+  const [iframeError, setIframeError] = useState(false);
   const dataSources = [
     {
       name: "Portfolio Database",
@@ -114,9 +116,49 @@ export default function DataEnvironment() {
                 Open Full View
               </Button>
             </CardHeader>
-            <CardContent className="p-0">
-              <div className="w-full h-96 border rounded-lg overflow-hidden bg-white dark:bg-gray-900">
-                <HarvardVisualization />
+            <CardContent>
+              <div className="w-full h-96 border rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900 relative">
+                {iframeError ? (
+                  <div className="flex flex-col items-center justify-center h-full text-center p-6">
+                    <AlertTriangle className="h-12 w-12 text-yellow-500 mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                      External Visualization Unavailable
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                      The external visualization may require authentication or have restricted access.
+                    </p>
+                    <Button 
+                      onClick={() => window.open('https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize', '_blank')}
+                      variant="outline"
+                      size="sm"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Try Opening Directly
+                    </Button>
+                  </div>
+                ) : (
+                  <iframe 
+                    src="https://harvard-wealth-management-bav37zs66-invisible-prototypes.vercel.app/visualize"
+                    className="w-full h-full border-0"
+                    title="Harvard Wealth Management Data Visualization"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    onError={() => setIframeError(true)}
+                    onLoad={(e) => {
+                      // Check if iframe loaded successfully
+                      try {
+                        const iframe = e.target as HTMLIFrameElement;
+                        if (iframe.contentWindow) {
+                          // If we can access the contentWindow, it's likely loaded
+                          setIframeError(false);
+                        }
+                      } catch (error) {
+                        // If we can't access due to CORS, that's normal for cross-origin iframes
+                        console.log('Cross-origin iframe loaded (CORS restricted)');
+                      }
+                    }}
+                  />
+                )}
               </div>
             </CardContent>
           </Card>

@@ -158,12 +158,6 @@ Comprehensive AI model management system with:
   - Updated Data Environment page with iframe to Harvard visualization platform
   - Enabled full interactivity for exploring various information sources
   - Provides comprehensive data analysis and visualization capabilities
-- June 16, 2025: Resolved Harvard visualization integration issues
-  - Created comprehensive local HarvardVisualization component with authentic endowment data
-  - Implemented tabbed interface with Portfolio, Managers, Performance, ESG, and Transactions views
-  - Added interactive metrics including $52.8B total assets, asset allocation charts, top managers analysis
-  - Resolved external iframe connection errors by building native React component
-  - Enhanced Data Environment page with embedded Harvard Management Company analytics
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
