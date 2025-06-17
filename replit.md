@@ -158,12 +158,6 @@ Comprehensive AI model management system with:
   - Updated Data Environment page with iframe to Harvard visualization platform
   - Enabled full interactivity for exploring various information sources
   - Provides comprehensive data analysis and visualization capabilities
-- June 17, 2025: Resolved Data Environment navigation and authentication issues
-  - Fixed Data Environment page navigation and scrolling by removing special layout handling
-  - Created server-side proxy endpoint to bypass external URL CORS restrictions
-  - Built comprehensive embedded Harvard Wealth Management visualization with Chart.js
-  - Added real-time portfolio metrics, asset allocation charts, and system performance monitoring
-  - Resolved 401 authentication errors with self-hosted visualization solution
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.

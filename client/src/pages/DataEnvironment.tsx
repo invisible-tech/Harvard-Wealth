@@ -112,7 +112,7 @@ export default function DataEnvironment() {
             <CardContent>
               <div className="w-full h-96 border rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-900">
                 <iframe 
-                  src="/api/harvard-visualization"
+                  src="/api/proxy/harvard-viz"
                   className="w-full h-full border-0"
                   title="Harvard Wealth Management Data Visualization"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
